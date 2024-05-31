@@ -1,0 +1,213 @@
+.pageNavbar {
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.navbarContainerAdmin {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color-one);
+  height: 100%;
+  width: 5rem;
+  background-color: var(--five-color);
+}
+
+.navbarContainerAdmin .navbar-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+  margin-top: 1rem;
+}
+
+.navbarContainerAdmin .navbar-middle {
+  
+  height: 15rem;
+}
+
+.navbarContainerAdmin .logo-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbarContainerAdmin .logo-content-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.navbarContainerAdmin .logo-content .image img {
+  object-fit: cover;
+  width: 3rem;
+  margin: 0;
+}
+
+.navbarContainerAdmin .navbar-links {
+  align-items: center;
+  margin-top: 30px;
+}
+
+.navbarContainerAdmin .navbar-links .category {
+  font-size: 10pt;
+  font-weight: 500;
+  opacity: .6;
+}
+
+.navbarContainerAdmin .navbar-links-close .text {
+  opacity: 0;
+}
+
+
+
+.navbarContainerAdmin ul {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbarContainerAdmin .link-navbaradmin {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 13pt;
+  font-weight: 500;
+  justify-content: center;
+  padding: .5rem;
+}
+
+.navbarContainerAdmin .link-navbaradmin-selected {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 13pt;
+  font-weight: 500;
+  justify-content: center;
+  padding: .5rem;
+  background-color: var(--tree-color);
+  border-radius: .3rem;
+}
+.navbarContainerAdmin .link-navbaradmin:hover {
+  background-color: var(--four-color);
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+
+.navbarContainerAdmin .link-navbaradmin .buttonNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: .5rem; */
+  /* width: 3rem; */
+  align-items: center;
+  justify-content: left;
+  text-decoration: none;
+}
+
+.navbarContainerAdmin .link-navbaradmin i {
+  color: var(--text-color-one);
+  font-size: 18pt;
+}
+.navbarContainerAdmin .link-navbaradmin a {
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbarContainerAdmin .profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15pt;
+}
+
+.navbarContainerAdmin .profile-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+
+.navbarContainerAdmin .profile-content .arrow-close-open {
+  position: relative;
+  margin: 10px;
+  top: 13%;
+  left: 92%;
+  padding: 1% 2% 1% 2%;
+  background-color: var(--tree-color);
+  border-radius: 70%;
+  color: #fff;
+}
+
+.navbarContainerAdmin .profile-content .arrow-close-open:hover {
+  background-color: var(--four-color);
+  color: #001C5B;
+}
+
+.navbarContainerAdmin .profile-name-profession-content {
+  display: flex;
+}
+
+
+.navbarContainerAdmin .profile-name-profession-content .name {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.navbarContainerAdmin .name .nameName {
+  font-weight: 600;
+  font-size: 11pt;
+}
+
+.navbarContainerAdmin .profile-name-profession-content .profession {
+  padding: 0;
+  font-size: 9pt;
+  opacity: .7;
+}
+
+.navbarContainerAdmin .profile-name-profession-content-close .name {
+  opacity: 0;
+}
+
+.navbarContainerAdmin .profile-name-profession-content-close .profession {
+  opacity: 0;
+}
+
+.navbarAdminContainer .more-profile-arrow i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15pt;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 0;
+}
+
+
+.navbarAdminContainer .navbar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #001C5B;
+
+}

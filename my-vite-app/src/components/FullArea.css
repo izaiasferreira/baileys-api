@@ -1,0 +1,43 @@
+.full-area {
+  position: absolute;
+  z-index: 99999;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+}
+.full-area-close {
+  display: none;
+}
+.full-area .full-area-container {
+  z-index: 9999;
+  align-items: center;
+  color: var(--text-color-one);
+  background: var(--one-color);
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.full-area-header {
+  display: flex;
+  color: var(--text-color-one);
+  background-color: var(--one-color);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+}
+.full-area-header-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-area-container .full-area-back{
+  background-color: var(--one-color);
+  opacity: .5;
+}

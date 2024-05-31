@@ -1,0 +1,64 @@
+.sector-for-list-container {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-color-one);
+  padding: 7px;
+  align-items: center;
+  border-radius: 5px;
+  animation-duration: 0.3s;
+  animation-name: eraser;
+}
+
+.sector-for-list-container:hover {
+  background-color: var(--two-color);
+}
+
+.sector-for-list-head {
+  display: flex;
+  align-items: center;
+}
+
+
+.sector-for-list-name {
+  justify-content: left;
+}
+
+.sector-for-list-name .name {
+  margin: 0;
+  padding: 0;
+  font-size: 12pt;
+  font-weight: 400;
+}
+
+.sector-for-list-options i {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+
+.sector-for-list-options i:hover {
+  background-color: var(--five-color);
+}
+
+.sector-for-list-options-disable i {
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.disable {
+  opacity: 0.7;
+  background-color: var(--two-color);
+  cursor: no-drop;
+}
+
+.disable:hover {
+  background-color: var(--two-color);
+}
+
+.sector-for-list-container .edit-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

@@ -1,0 +1,46 @@
+.create-new-sector-container{
+ padding: 15px;
+ display: flex;
+ flex-direction: column;
+
+}
+
+.create-new-sector-container .create-new-sector-header{
+  padding: 5px;
+  font-size: 15pt;
+  font-weight: 500;
+}
+
+.create-new-sector-middle{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.create-new-sector-middle .input-option{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.create-new-sector-middle .input-option .title{
+ font-size: 12pt;
+ font-weight: 400;
+}
+
+.create-new-sector-middle .input-option input{
+  padding: 5px;
+  outline: none;
+  background-color: var(--one-color);
+  color: var(--text-color-one);
+  border: none;
+  border-bottom: 2px solid var(--two-color);
+}
+
+.create-new-sector-footer{
+  display: flex;
+  justify-content: flex-end;
+}

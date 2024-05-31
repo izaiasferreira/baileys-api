@@ -1,0 +1,85 @@
+.user-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.user-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .8rem;
+}
+
+.user-list-header .options-header{
+  display: flex;
+  align-items: center;
+}
+
+
+.user-list-header .title-users {
+  font-size: 17pt;
+  font-weight: 500;
+}
+
+.user-for-list-body {
+  overflow-y: auto;
+  height: 13.3rem;
+}
+
+.noUsers {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  opacity: 0.5;
+}
+
+
+@media(max-width: 300px) {
+  .user-list-container {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .user-list-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .user-list-header .options-header i {
+    color: var(--text-color-one);
+    font-size: 18pt;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 5px;
+  }
+
+  .user-list-header .options-header i:hover {
+    background-color: var(--four-color);
+    cursor: pointer;
+  }
+
+  .user-list-header .title {
+    font-size: 17pt;
+    font-weight: 500;
+  }
+
+  .user-for-list-body {
+    overflow-y: scroll;
+    height: 5rem;
+  }
+
+  .noUsers {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    opacity: 0.5;
+  }
+
+}

@@ -1,0 +1,60 @@
+.message-container-response-chindren {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    color: var(--text-color-one);
+    background-color: var(--one-color);
+    height: 3rem;
+    max-width: 15rem;
+    min-width: 7rem;
+    opacity: .8;
+    border-radius: .5rem;
+}
+
+.message-container-response-chindren .thumb {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    background-color: var(--tree-color);
+}
+
+.message-container-response-chindren .thumb .thumb-response {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    background-color: var(--one-color);
+}
+.message-container-response-chindren .thumb .thumb-response-div {
+    width: 3rem;
+    height: 3rem;
+    background-color: rgb(0, 183, 255);
+}
+
+.message-container-response-chindren .thumb i {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    color: var(--one-color);
+    font-size: 20pt;
+    box-shadow: inset;
+}
+
+.message-container-response-chindren .bar {
+    background-color: rgb(0, 183, 255);
+    width: .5rem;
+    height: 100%;
+    left: 0;
+    border-radius: 1rem;
+    z-index: 9;
+}
+
+
+.message-container-response-chindren .text-message-response {
+    padding: .3rem;
+    color: var(--text-color-one);
+    overflow: auto;
+    width: 100%;
+}

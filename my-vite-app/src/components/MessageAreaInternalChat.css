@@ -1,0 +1,260 @@
+@keyframes showIn {
+  0% {
+    opacity: 0;
+    height: 0;
+    position: relative;
+    bottom: -30rem;
+  }
+}
+
+.message-area-internalchat-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color-one);
+  height: 100%;
+  width: 30rem;
+  animation-duration: 0.2s;
+  animation-name: eraser;
+}
+
+/* ----------------------------------------------------------------- */
+.message-area-internalchat-container .preview-file-upload {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+    width: 97%;
+  height: 100%;
+  background-color: var(--one-color);
+}
+
+.message-area-internalchat-container .preview-file-upload .content {
+  max-width: 90%;
+}
+
+.message-area-internalchat-container .preview-file-upload .input {
+  display: flex;
+  width: 80%;
+  padding: 1rem;
+}
+
+.preview-file-upload .content img {
+  width: 100%;
+}
+
+.preview-file-upload .content video {
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------- */
+
+.message-area-internalchat-container .file-hide {
+  display: none;
+}
+
+.message-area-internalchat-header {
+  padding: .3rem;
+  max-height: 3.6rem;
+  z-index: 3;
+}
+
+.message-area-internalchat-header .contact-name-number-profilepic {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.message-area-internalchat-container .contact-name-number-profilepic-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.message-area-internalchat-container .contact-name-number-profilepic .name-number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.message-area-internalchat-container .contact-name-number-profilepic .name-number .name {
+  font-size: 15pt;
+  font-weight: 700;
+  color: var(--tree-color);
+}
+
+.message-area-internalchat-container .contact-name-number-profilepic .name-number .number {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  top: -.1rem;
+  left: .7rem;
+  font-size: 9pt;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.message-area-internalchat-container .contact-name-number-profilepic .name-number .number i {
+  position: relative;
+  top: -.1rem;
+  font-size: 10pt;
+  font-weight: 600;
+  margin: .3rem;
+}
+
+
+.message-area-internalchat-container .contact-name-number-profilepic img {
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+  border-radius: 100%;
+  margin-left: 10px;
+  object-fit: cover;
+}
+
+.message-area-internalchat-middle {
+  position: relative;
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  background: rgb(207, 231, 255);
+  overflow-y: auto;
+  background: var(--five-color);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.message-area-internalchat-middle .more-messages {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-area-internalchat-middle .backImage {
+  width: 100%;
+  height: 100%;
+
+  filter: opacity(25%);
+}
+
+.icon-options-client {
+  display: flex;
+  align-items: center;
+  padding: .6rem;
+}
+
+.icon-options-client .part-one {
+  display: flex;
+  margin-right: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 8rem;
+}
+
+.message-area-internalchat-footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  animation: showIn 1s ease-in-out;
+  background-color: var(--five-color);
+}
+
+.message-area-internalchat-footer-noMessages {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  animation: showIn 1s ease-in-out;
+}
+
+.message-area-internalchat-footer .message-area-internalchat-footer-switch {
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  z-index: 9;
+  
+}
+
+.message-area-internalchat-footer .message-area-internalchat-footer-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 98%;
+  border-radius: 1rem 1rem 0 0;
+  background-color: var(--one-color);
+  padding: .2rem;
+}
+
+.message-area-internalchat-footer .message-area-internalchat-footer-content .buttons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.message-area-internalchat-footer .message-area-internalchat-footer-content .buttons .left {
+  display: flex;
+  align-items: center;
+}
+
+#teste button {
+  bottom: 2rem;
+  width: 2.3rem;
+  height: 2rem;
+  background-color: var(--four-color);
+  box-shadow: none;
+  margin-bottom: 1rem;
+}
+
+#teste button i {
+  color: var(--text-color-one);
+}
+.message-area-internalchat-footer{
+  background-color: var(--five-color);
+}
+
+.message-area-internalchat-footer .message-area-internalchat-footer-content .message-text-area {
+  background-color: var(--one-color);
+  border: solid 0px;
+  border-radius: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  cursor: text;
+  width: 100%;
+  height: 70%;
+  margin: 5px;
+  padding: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: var(--text-color-one);
+  outline: none;
+}
+
+.message-area-internalchat-footer .message-area-internalchat-footer-content .footer-middle {
+  display: flex;
+}
+
+.noMessages {
+  position: relative;
+  top: 10px;
+  color: var(--text-color-two);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+.noMessages span {
+  padding: 5px;
+  background-color: var(--tree-color);
+  border-radius: 3px;
+}

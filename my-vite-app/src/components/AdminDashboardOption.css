@@ -1,0 +1,38 @@
+.admin-dashboar-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  height: 90%;
+  width: 100%;
+  background-color: var(--six-color);
+  border-radius: 1rem;
+  margin: .5rem;
+}
+
+.admin-dashboar-option .title {
+  font-size: 17pt;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.admin-dashboar-option .content-option {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-radius: 1rem;
+}
+
+@media(max-width: 300px) {
+  .admin-dashboar-option {
+    padding: 5px;
+    height: 90%;
+    width: 100%;
+    background-color: var(--one-color);
+    border-radius: 10px;
+    margin: 5px;
+    border: 1px solid var(--four-color);
+  }
+}

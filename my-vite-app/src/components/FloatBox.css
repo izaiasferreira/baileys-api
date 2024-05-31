@@ -1,0 +1,39 @@
+.float-box-container {
+  z-index: 9;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 25rem;
+  max-height: 35rem;
+  padding: .5rem;
+  background-color: var(--two-color);
+  animation: sizeIn .5s;
+  transition: 1s;
+  box-shadow: 7px 10px 8px 0px var(--background-color-modal);
+  border-radius: .5rem;
+}
+
+.float-box-container  .disable {
+  display: none;
+}
+
+
+.float-box-container  .children {
+  flex-wrap: wrap;
+  overflow: hidden;
+  width: 100%;
+  transition: 1s;
+  overflow-y: auto;
+  /* animation-name: eraser;
+  animation-duration: 1s; */
+}
+ .back-float-box{
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}

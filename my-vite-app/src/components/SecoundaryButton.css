@@ -1,0 +1,19 @@
+.secoundary-button-container {
+  margin: .5rem .5rem .5rem 0px;
+}
+
+.secoundary-button {
+  background-color: var(--two-color);
+  cursor: pointer;
+  color: var(--text-color-one);
+  padding: .5rem;
+  border: none;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.secoundary-button:hover {
+  background-color: var(--four-color);
+  color: var(--text-color-one);
+}

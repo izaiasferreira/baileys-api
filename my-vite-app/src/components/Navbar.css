@@ -1,0 +1,523 @@
+.pageNavbar {
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.navbarContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color-one);
+  height: 100%;
+  background-color: var(--one-color);
+  border-right: 1px solid var(--six-color);
+}
+
+
+.navbarContainer .options {
+  padding: 10px;
+}
+
+.navbarContainer .container-space {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.navbarContainer .number-notifications:hover {
+  background-color: var(--four-color);
+  color: var(--one-color);
+}
+
+
+.navbarContainer .logo-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.navbarContainer .logo-content-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.navbarContainer .logo-content .image img {
+  object-fit: cover;
+  width: 2rem;
+  padding: .3rem;
+  margin-right: 5pr;
+}
+
+.navbarContainer .logo-content .text {
+  color: var(--text-color-one);
+  font-weight: 600;
+  font-size: 17pt;
+}
+
+.navbarContainer .navbar-links {
+  color: var(--text-color-one);
+  align-items: center;
+  margin-top: 30px;
+}
+
+.navbarContainer .navbar-links .category{
+  margin: .3rem;
+  font-size: 10pt;
+  font-weight: 500;
+  opacity: .6;
+}
+
+.navbarContainer .navbar-links-close .text {
+  opacity: 0;
+}
+
+
+
+.navbarContainer ul {
+  list-style: none;
+}
+
+.navbarContainer .link-navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 13pt;
+  font-weight: 500;
+}
+
+.navbarContainer .link-navbar:hover {
+  background-color: var(--four-color);
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+
+.navbarContainer .link-navbar .buttonNav {
+  display: flex;
+  padding: 10px;
+  width: 100%;
+  align-items: center;
+  justify-content: left;
+  text-decoration: none;
+  color: var(--text-color-one);
+}
+
+.navbarContainer .link-navbar i {
+  color: var(--text-color-one);
+  font-size: 18pt;
+  margin-right: 10px;
+}
+
+
+.navbarContainer .profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  font-size: 15pt;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.navbarContainer .profile-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.navbarContainer .profile-container {
+  position: relative;
+}
+
+.navbarContainer .profile-content .arrow-close-open {
+  position: relative;
+  margin: 10px;
+  top: 13%;
+  left: 92%;
+  padding: 1% 2% 1% 2%;
+  background-color: var(--tree-color);
+  border-radius: 70%;
+  color: #fff;
+}
+
+.profile-content .arrow-close-open:hover {
+  background-color: var(--four-color);
+  color: #001C5B;
+}
+
+.profile-name-profession-content {
+  color: var(--text-color-one);
+  display: flex;
+}
+
+
+.profile-name-profession-content .name {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.name .nameName {
+  font-weight: 600;
+  font-size: 11pt;
+}
+
+.profile-name-profession-content .profession {
+  padding: 0;
+  font-size: 9pt;
+  opacity: .7;
+}
+
+.profile-name-profession-content-close .name {
+  opacity: 0;
+}
+
+.profile-name-profession-content-close .profession {
+  opacity: 0;
+}
+
+.more-profile-arrow i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15pt;
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.more-profile-arrow i:hover {
+  border-radius: 1000px;
+  background-color: var(--four-color);
+  opacity: 1;
+}
+
+.navbar-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: var(--text-color-one);
+  font-size: 10pt;
+  font-weight: 400;
+  margin-bottom: 30px;
+  bottom: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.disconnected {
+  background-color: rgba(212, 0, 0, 0.724);
+  border-radius: 5px;
+  color: var(--text-color-one);
+}
+
+
+@media(max-width: 1300px) {
+  .pageNavbar {
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .mobile-menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 10%;
+    background-color: var(--one-color);
+  }
+
+  .mobile-menu i {
+    display: flex;
+    justify-self: center;
+    padding: 10px;
+    font-size: 20pt;
+    color: var(--text-color-one);
+
+  }
+
+  .mobile-menu .logo-span {
+    width: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mobile-menu img {
+    width: 40px;
+    height: 40px;
+
+  }
+
+  .mobile-menu span {
+    width: 100%;
+  }
+
+  .navbarContainer {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color-one);
+    height: 100%;
+    width: 70%;
+    background-color: var(--one-color);
+    border-right: 1.5px solid var(--four-color);
+    animation-duration: 0.2s;
+    animation-name: slidein;
+  }
+
+  .closeNavbar {
+    display: none;
+    animation-duration: 0.2s;
+    animation-name: slideout;
+  }
+
+  .navbarAdminContainer {
+    width: 23%;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .container-space {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .navbarContainer .number-notifications:hover {
+    background-color: var(--four-color);
+    color: var(--one-color);
+  }
+
+
+  .logo-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .logo-content-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-content .image img {
+    object-fit: cover;
+    width: 35px;
+    margin-right: 10px;
+  }
+
+  .logo-content .text {
+    color: var(--text-color-one);
+    font-size: 20pt;
+  }
+
+  .navbar-links {
+    color: var(--text-color-one);
+    align-items: center;
+    margin-top: 30px;
+  }
+
+
+  .navbarContainer ul {
+    list-style: none;
+  }
+
+  .navbarContainer .link-navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 15pt;
+  }
+
+  .navbarContainer .link-navbar:hover {
+    background-color: var(--four-color);
+    border-radius: 5px;
+    cursor: pointer;
+
+  }
+
+  .link-navbar a {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    align-items: center;
+    justify-content: left;
+    text-decoration: none;
+    color: var(--text-color-one);
+  }
+
+  .link-navbar i {
+    color: var(--text-color-one);
+    font-size: 18pt;
+    margin-right: 10px;
+  }
+
+
+  .profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 15pt;
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .profile-container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .profile-container {
+    position: relative;
+  }
+
+  .profile-content .arrow-close-open {
+    position: relative;
+    margin: 10px;
+    top: 13%;
+    left: 92%;
+    padding: 1% 2% 1% 2%;
+    background-color: var(--tree-color);
+    border-radius: 70%;
+    color: #fff;
+  }
+
+  .profile-content .arrow-close-open:hover {
+    background-color: var(--four-color);
+    color: #001C5B;
+  }
+
+  .profile-name-profession-content {
+    color: var(--text-color-one);
+    display: flex;
+  }
+
+
+  .profile-name-profession-content .name {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .name .nameName {
+    font-weight: 400;
+  }
+
+  .profile-name-profession-content .profession {
+    font-size: 10pt;
+  }
+
+  .profile-name-profession-content-close .name {
+    opacity: 0;
+  }
+
+  .profile-name-profession-content-close .profession {
+    opacity: 0;
+  }
+
+  .more-profile-arrow i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15pt;
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+
+  .more-profile-arrow i:hover {
+    border-radius: 1000px;
+    background-color: var(--four-color);
+    opacity: 1;
+  }
+
+  .navbar-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: var(--text-color-one);
+    font-size: 10pt;
+    font-weight: 400;
+    margin-bottom: 30px;
+    bottom: 0;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .back-nav {
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: var(--black-color);
+    opacity: .5;
+    animation-duration: 0.2s;
+    animation-name: eraser;
+  }
+
+  .back-nav-close {
+    display: none;
+    animation-duration: 0.2s;
+    animation-name: eraserout;
+  }
+
+
+}
+
+.navbarContainer .selected-navbar {
+  background-color: var(--tree-color);
+  border-radius: .7rem;
+}
+
+
+.selected-navbar i {
+  color: var(--text-color-two);
+}
+
+
+.navbarContainer .selected-navbar i, .navbarContainer .selected-navbar .text {
+  color: var(--text-color-two);
+}

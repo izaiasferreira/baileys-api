@@ -1,0 +1,21 @@
+.input-select-container {
+    display: flex;
+    align-items: center;
+    min-width: 4rem;
+    cursor: pointer;
+}
+
+.input-select-container select {
+    width: 100%;
+    height: 2rem;
+    padding: .5rem;
+    outline: none;
+    background-color: var(--one-color);
+    border: none;
+    color: var(--text-color-one);
+    cursor: pointer;
+}
+.input-select-container select:hover {
+    background-color: var(--four-color);
+    border-radius: .3rem;
+}

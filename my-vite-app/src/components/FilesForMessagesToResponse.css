@@ -1,0 +1,45 @@
+.files-container-response {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: var(--one-color);
+    border-radius: .3rem;
+    margin-right: .3rem;
+}
+
+
+.files-container-response img {
+    height: 4rem;
+    width: 4rem;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.files-container-response video {
+    height: 3rem;
+    width: 3rem;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon-play i {
+    cursor: pointer;
+    font-size: 30pt;
+}
+
+.files-content-document-response{
+    background-color: var(--one-color);
+    margin-right: .3rem;
+    border-radius: .2rem;
+    display: flex;
+    align-items: center;
+}
+
+.files-content-document-response i {
+   
+    font-size: 17pt;
+    padding: 1rem;
+}

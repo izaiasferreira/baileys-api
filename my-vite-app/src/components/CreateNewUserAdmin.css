@@ -1,0 +1,27 @@
+.create-new-user-container{
+ padding: 15px;
+
+}
+
+.create-new-user-container .create-new-user-header{
+  padding: 5px;
+  font-size: 15pt;
+  font-weight: 500;
+}
+
+.create-new-user-middle{
+  display: flex;
+  flex-direction: column;
+}
+
+.create-new-user-middle .input-option{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.create-new-user-footer{
+  display: flex;
+  justify-content: flex-end;
+}

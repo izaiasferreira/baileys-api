@@ -1,0 +1,113 @@
+.profile-page-container {
+  width: 100%;
+  animation-duration: 0.3s;
+  animation-name: eraser;
+}
+
+.profile-page-header {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.profile-page-header .profile-page-header-back {
+  width: 100%;
+  height: 150px;
+  background-color: var(--two-color);
+}
+
+.icon-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  bottom: 40%;
+  left: 15%;
+  position: absolute;
+  z-index: 99;
+  background-color: var(--tree-color);
+  color: var(--text-color-two);
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.icon-edit:hover {
+  background-color: var(--two-color);
+  color: var(--text-color-one);
+}
+
+.profile-page-header img {
+  z-index: 1;
+  position: relative;
+  top: -80px;
+  width: 200px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-page-middle {
+  display: flex;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 40px 0px 40px;
+}
+
+.middle-component {
+  margin-bottom: 30px;
+}
+
+.middle-title {
+  display: flex;
+  align-items: center;
+}
+
+.middle-title h1 {
+  font-size: 15pt;
+  font-weight: 650;
+}
+
+.middle-title i {
+  margin-left: 10px;
+  cursor: pointer;
+  color: var(--text-color-one);
+  padding: 7px;
+  border-radius: 50%;
+}
+
+.middle-title i:hover {
+  color: var(--text-color-one);
+  background-color: var(--four-color);
+}
+
+.profile-page-middle .profile-options-item {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0px 0px 0px;
+}
+
+.profile-page-middle .profile-options-item .profile-options-txt-title {
+  font-size: 11pt;
+  font-weight: 500;
+  color: var(--text-color-one);
+}
+
+.profile-page-middle .profile-options-item .profile-options-txt {
+  font-size: 10pt;
+  font-weight: 350;
+  color: var(--text-color-one);
+  opacity: 0.7;
+}
+
+.profile-page-footer {
+  margin: 10px 10px 40px 40px;
+}

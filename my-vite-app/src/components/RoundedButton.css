@@ -1,0 +1,43 @@
+.rounded-button-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: .2rem;
+  padding: .4rem 1rem .4rem 1rem;
+  background-color: var(--one-color);
+  border-radius: 50rem;
+  border: 2px solid var(--two-color);
+}
+
+.rounded-button-container:hover {
+  background-color: var(--six-color);
+  color: var(--text-color-one);
+  border: 2px solid var(--tree-color);
+}
+
+.rounded-button-container-selected {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: .2rem;
+  padding: .4rem 1rem .4rem 1rem;
+  background-color: var(--tree-color);
+  border-radius: 50rem;
+  border: 2px solid var(--tree-color);
+  color: var(--text-color-two);
+  opacity: .9;
+}
+.rounded-button-container-selected:hover {
+  opacity: 1;
+}
+
+.rounded-button-container .body, .rounded-button-container-selected .body {
+  display: flex;
+  align-items: center;
+}
+
+.rounded-button-container .body i, .rounded-button-container-selected .body i {
+  font-size: 12pt;
+  margin-right: .2rem;
+  margin-left: .2rem;
+}

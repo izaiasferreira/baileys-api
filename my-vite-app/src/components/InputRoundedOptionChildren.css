@@ -1,0 +1,52 @@
+ .option-from-input-rounded-children {
+     display: flex;
+     align-items: center;
+     margin: .2rem;
+     padding: .2rem;
+     border-radius: .3rem;
+ }
+
+ .option-from-input-rounded-children:hover {
+     background-color: var(--six-color);
+     cursor: pointer;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     -ms-appearance: none;
+     -o-appearance: none;
+     appearance: none;
+ }
+
+
+ .option-from-input-rounded-children input[type="radio"] {
+     width: 1.15em;
+     height: 1.15em;
+     cursor: pointer;
+     padding: 0;
+     margin: 0;
+     display: none;
+     transition: .2s;
+ }
+
+ .option-from-input-rounded-children input[type="radio"]:checked {
+     display: none;
+ }
+
+ .option-from-input-rounded-children input[type="radio"]:checked+label {
+     background-color: var(--five-color);
+     border-radius: .3rem;
+     transition: .2s;
+     color: var(--text-color-one);
+ }
+ .option-from-input-rounded-children input[type="radio"]:checked .bx{
+    color: var(--text-color-two);
+}
+
+
+ .option-from-input-rounded-children label {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 5px;
+     cursor: pointer;
+     padding: .1rem;
+ }

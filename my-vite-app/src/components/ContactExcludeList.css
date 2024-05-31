@@ -1,0 +1,30 @@
+.contact-exclude-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25rem;
+  height: 80vh;
+  border-radius: 1rem;
+}
+
+.contact-exclude-list-container .seach{
+  width: 80%;
+}
+
+.contact-exclude-list-container .contacts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.contact-exclude-list-container .contacts-container .title{
+  font-size: 14pt;
+  font-weight: 500;
+  padding: .5rem;
+  width: 90%;
+  text-align: left;
+}
+.contact-exclude-list-container .contacts-container .contacts{
+  margin-top: 1rem;
+}

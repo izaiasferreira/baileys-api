@@ -1,0 +1,22 @@
+
+
+.em-breve-container{
+    min-width: 15rem;
+    min-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    
+}
+
+.em-breve-container img{
+    width: 15rem;
+}
+
+.em-breve-container .text-breve{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color-one);
+}

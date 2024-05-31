@@ -1,0 +1,17 @@
+
+.primary-button-container{
+  margin: .5rem .5rem .5rem 0px;
+}
+.primary-button{
+  background-color: var(--tree-color);
+  cursor: pointer;
+  color: var(--text-color-two);
+  padding: .5rem;
+  border: none;
+  border-radius: 3px;
+}
+
+.primary-button:hover{
+  background-color: var(--four-color);
+  color: var(--text-color-one);
+}

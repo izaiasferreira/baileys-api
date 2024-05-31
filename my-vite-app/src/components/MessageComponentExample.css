@@ -1,0 +1,194 @@
+.message-container-client-example {
+    position: relative;
+    align-self: flex-start;
+    margin-top: 15px;
+    margin-left: 15px;
+    padding: 5px;
+    max-width: 30rem;
+    background-color: var(--two-color);
+    color: var(--text-color-one);
+    border-radius: 0px 10px 10px 10px;
+    font-size: 11pt;
+    font-weight: normal;
+}
+
+.message-container-client-example .arrow {
+    position: absolute;
+    left: -11px;
+    top: 0px;
+    width: 0;
+    height: 0;
+    border-top: -1px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-right: 12px solid var(--two-color);
+}
+
+.message-container-attendance-example {
+    position: relative;
+    align-self: flex-end;
+    margin-top: 10px;
+    margin-right: 15px;
+    padding: 5px;
+    background-color: var(--tree-color);
+    color: var(--text-color-two);
+    border-radius: 10px 0px 10px 10px;
+    font-size: 11pt;
+    font-weight: normal;
+}
+
+.disable {
+    display: none;
+}
+
+.message-container-attendance-example .arrow-options {
+    z-index: 1;
+    position: absolute;
+    right: -0.2rem;
+    top: -0.2rem;
+    border-radius: 50rem;
+    animation-duration: 0.2s;
+    animation-name: slidein-arrow-message;
+}
+
+.message-container-client-example .arrow-options {
+    z-index: 1;
+    position: absolute;
+    right: 0rem;
+    top: 0rem;
+    animation-duration: 0.2s;
+    animation-name: slidein-arrow-message;
+
+}
+
+.message-container-attendance-example .arrow-options svg {
+    color: var(--text-color-two);
+    padding: 0;
+    background-color: var(--tree-color);
+    box-shadow: 1px -2px 5px 5px var(--tree-color);
+    border-radius: 50rem;
+}
+
+.message-container-client-example .arrow-options svg {
+    color: var(--text-color-one);
+    padding: 0;
+    background-color: var(--two-color);
+    box-shadow: 1px -2px 5px 5px var(--two-color);
+    border-radius: 50rem;
+}
+
+.message-container-attendance-example .arrow {
+    position: absolute;
+    right: -11px;
+    top: 0px;
+    height: 0;
+    border-top: 0px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-left: 12px solid var(--tree-color);
+}
+
+
+
+.message-container-attendance-example .arrow {
+    position: absolute;
+    right: -11px;
+    top: 0px;
+    height: 0;
+    border-top: 0px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-left: 12px solid var(--tree-color);
+}
+
+
+
+.message-middle-text-example {
+    min-width: 30px;
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message-middle-content-example {
+    display: flex;
+}
+
+.message-middle-content-example .content {
+    display: flex;
+    flex-direction: column;
+}
+.message-middle-content-example .content .text-and-hour{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.text-message {
+    width: 100%;
+}
+.message-middle-content-example .content-example .footer-hour,.message-middle-content-example .content-example  .footer-hour-attendance{
+    right: .3rem;
+    bottom: .3rem;
+    font-size: 8pt;
+    font-weight: 400;
+    display: flex;
+    opacity: .8;
+}
+.delete-for-all-message {
+    display: flex;
+    align-items: center;
+    padding: .3rem;
+    font-style: italic;
+    color: var(--text-color-one);
+}
+
+.delete-for-all-message svg {
+    color: brown;
+}
+
+.message-middle-content-example .error-message {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: .9rem;
+    padding: .2rem;
+    margin: .2rem;
+    font-style: italic;
+}
+
+.message-middle-content-example .error-message i {
+    margin: .3rem;
+    color: red;
+}
+
+@media(max-width: 900px) {
+    .message-container-client-example {
+        position: relative;
+        align-self: flex-start;
+        margin-top: 15px;
+        margin-left: 15px;
+        padding: 5px;
+        max-width: 50%;
+        background-color: var(--two-color);
+        color: var(--text-color-one);
+        border-radius: 0px 10px 10px 10px;
+        font-size: 10pt;
+        font-weight: 450;
+    }
+
+    .message-container-attendance-example {
+        position: relative;
+        align-self: flex-end;
+        margin-top: 10px;
+        margin-right: 15px;
+        padding: 5px;
+        max-width: 50%;
+        background-color: var(--tree-color);
+        color: var(--text-color-two);
+        border-radius: 10px 0px 10px 10px;
+        font-size: 10pt;
+        font-weight: 450;
+    }
+
+}

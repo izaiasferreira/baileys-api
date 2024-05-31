@@ -1,0 +1,35 @@
+.rounded-recipient-container {
+  display: flex;
+  max-height: .8rem;
+  min-width: 1.3rem;
+  align-items: center;
+  cursor: pointer;
+  margin: .2rem;
+  padding: .4rem 1rem .4rem 1rem;
+  border-radius: 50rem;
+  border: 2px solid;
+  font-size: .8rem;
+}
+
+.rounded-recipient-container:hover {
+  background-color: var(--six-color);
+  color: var(--text-color-one);
+  border: 2px solid var(--tree-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+}
+
+.rounded-recipient-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: center;
+}
+
+.rounded-recipient-container .body i, .rounded-recipient-container-selected .body i {
+  font-size: 12pt;
+  margin-right: .2rem;
+  margin-left: .2rem;
+}

@@ -1,0 +1,41 @@
+.file-preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.file-preview-container .content {
+ /* min-height: 30rem;  
+  min-width: 30rem;*/
+  
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.file-preview-container .content img {
+  width: 100%;
+}
+
+.file-preview-container .content video {
+  width: 100%;
+}
+
+.file-preview-container .content .icon-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.file-preview-container .content .icon-preview i {
+  font-size: 50pt;
+}
+
+.file-preview-container .content .icon-preview span {
+  font-size: 15pt;
+}

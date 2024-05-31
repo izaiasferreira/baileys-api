@@ -1,0 +1,209 @@
+.button-container-model {
+  margin: .5rem;
+
+  --transform-button: .2s;
+}
+
+.button-container-model button {
+  cursor: pointer;
+  padding: .5rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  font-weight: 500;
+  padding: .5rem;
+  transition: var(--transform-button);
+}
+
+.button-container-model i {
+  font-size: 15pt;
+  margin-left: .3rem;
+  margin-right: .3rem;
+  font-weight: 500;
+  transition: var(--transform-button);
+}
+
+.button-container-model .primary {
+  background-color: var(--tree-color);
+  color: var(--text-color-two);
+  border: none;
+  animation: eraser;
+  animation-duration: .5s;
+  transition: var(--transform-button);
+}
+
+.button-container-model .primary:hover {
+  background-color: var(--four-color);
+  color: var(--text-color-one);
+  animation: eraser;
+  animation-duration: .5s;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-primary {
+  background-color: var(--tree-color);
+  color: var(--text-color-two);
+  border: none;
+  animation: eraser;
+  animation-duration: .5s;
+  border-radius: 999px;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-primary:hover {
+  background-color: var(--four-color);
+  color: var(--text-color-one);
+  animation: eraser;
+  animation-duration: .5s;
+  border-radius: 999px;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-secoundary {
+  background-color: var(--two-color);
+  color: var(--text-color-tree);
+  border: none;
+  animation: eraser;
+  animation-duration: .5s;
+  border-radius: 999px;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-secoundary:hover {
+  background-color: var(--five-color);
+  transition: var(--transform-button);
+}
+
+
+.button-container-model .secoundary {
+  background-color: var(--two-color);
+  color: var(--text-color-two);
+  border: none;
+  transition: var(--transform-button);
+}
+
+.button-container-model .secoundary:hover {
+  background-color: var(--four-color);
+  color: var(--text-color-one);
+  transition: var(--transform-button);
+}
+
+.button-container-model .clean {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--text-color-one);
+  border: none;
+  transition: var(--transform-button);
+}
+
+.button-container-model .clean:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--tree-color);
+  transition: var(--transform-button);
+}
+
+.button-container-model .outliner {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--text-color-one);
+  border: none;
+  transition: var(--transform-button);
+}
+
+.button-container-model .outliner:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--tree-color);
+  border-bottom: 1px solid var(--tree-color);
+  transition: var(--transform-button);
+}
+.button-container-model .primary-danger {
+  background-color: var(--danger-color);
+  color: var(--text-color-two);
+  border: none;
+  animation: eraser;
+  animation-duration: .5s;
+  transition: var(--transform-button);
+}
+
+.button-container-model .primary-danger:hover {
+  background-color: darkvar(--danger-color);
+  color: var(--text-color-one);
+  animation: eraser;
+  animation-duration: .5s;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-primary-danger {
+  background-color: var(--danger-color);
+  color: var(--text-color-two);
+  border: none;
+  animation: eraser;
+  animation-duration: .5s;
+  border-radius: 999px;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-primary-danger:hover {
+  background-color: darkvar(--danger-color);
+  color: var(--text-color-one);
+  animation: eraser;
+  animation-duration: .5s;
+  border-radius: 999px;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-secoundary-danger {
+  background-color: darkvar(--danger-color);
+  color: var(--text-color-tree);
+  border: none;
+  animation: eraser;
+  animation-duration: .5s;
+  border-radius: 999px;
+  transition: var(--transform-button);
+}
+
+.button-container-model .circle-secoundary-danger:hover {
+  background-color: var(--danger-color);
+  transition: var(--transform-button);
+}
+
+.button-container-model .secoundary-danger {
+  background-color: darkvar(--danger-color);
+  color: var(--text-color-two);
+  border: none;
+  transition: var(--transform-button);
+}
+
+.button-container-model .secoundary-danger:hover {
+  background-color: var(--danger-color);
+  color: var(--text-color-one);
+  transition: var(--transform-button);
+}
+
+.button-container-model .clean-danger {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--danger-color);
+  border: none;
+  transition: var(--transform-button);
+}
+
+.button-container-model .clean-danger:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: darkvar(--danger-color);
+  transition: var(--transform-button);
+}
+
+.button-container-model .outliner-danger {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--danger-color);
+  border: none;
+  transition: var(--transform-button);
+}
+
+.button-container-model .outliner-danger:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: darkvar(--danger-color);
+  border-bottom: 1px solid darkvar(--danger-color);
+  transition: var(--transform-button);
+}

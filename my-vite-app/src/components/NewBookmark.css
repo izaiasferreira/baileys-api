@@ -1,0 +1,59 @@
+.new-bookmark-container .new-bookmark-content-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-bookmark-container .title-inputs-bookmarks {
+    font-size: 10pt;
+    font-weight: 600;
+    text-align: left;
+    width: 100%;
+    padding: .3rem;
+}
+
+.new-bookmark-container .presentation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--four-color);
+    border-radius: .5rem;
+}
+
+.new-bookmark-container .color-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.new-bookmark-container .color-input-container .label-color {
+    font-size: 9pt;
+    font-weight: 500;
+    opacity: .6;
+}
+
+.new-bookmark-content-header input[type="color"] {
+    border: none;
+    border-radius: 500px;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    background-color: none;
+}
+
+.new-bookmark-content-header input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    background-color: none;
+}
+
+.new-bookmark-content-header input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50rem;
+    background-color: none;
+
+}

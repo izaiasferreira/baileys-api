@@ -1,0 +1,173 @@
+.new-client-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80vw;
+}
+
+.new-client-container .new-client-content {
+    width: 100%;
+    max-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.new-client-container .title {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 12pt;
+    font-weight: 500;
+    padding: .5rem;
+}
+
+.new-client-container .discription {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 9pt;
+    font-weight: 400;
+    font-style: italic;
+    padding: .5rem;
+}
+
+.new-client-container .new-client-content .new-client-content-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+
+}
+
+.new-client-container .new-client-content .new-client-section-collum {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: flex-start;
+}
+
+
+.new-client-container .new-client-content .new-client-content-rigth {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 40rem;
+    min-height: 100%;
+    padding: .5rem;
+}
+
+.new-client-container .new-client-content .new-client-content-rigth .new-client-section-row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+.new-client-container .new-client-content .new-client-content-rigth .new-client-section-row .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.new-client-container .new-client-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 97%;
+    height: 3rem;
+    padding: .5rem;
+}
+
+/* .new-client-content {
+    margin: 1rem;
+    max-width: 80vh;
+    max-height: 80vh;
+}
+
+.new-client-content-alternative {
+    padding: 5px;
+    width: 20rem;
+}
+
+.new-client-content-alternative .text-title {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.new-client-content-alternative .text-title .title {
+    font-size: 12pt;
+    font-weight: 500;
+    padding: .5rem;
+    background-color: rgb(255, 107, 107);
+    color: white;
+    border-radius: .3rem;
+}
+
+.new-client-content-alternative .text-title .text {
+    font-size: 10pt;
+    font-weight: 400;
+    padding: .5rem;
+}
+
+.new-client-content .new-client-input-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.new-client-input-container .text-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 30rem;
+    opacity: .7;
+}
+
+.new-client-input-container .text-title span {
+    text-align: left;
+    padding: 1rem;
+}
+
+.new-client-input-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.new-client-input-content-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start;
+}
+ .new-client-txt-title{
+    font-size: 10pt;
+    font-weight: 500;
+    margin: .5rem;
+}
+.new-client-text-description{
+    font-size: 8pt;
+    font-weight: 400;
+    margin: .5rem;
+    font-style: italic;
+    opacity: .5;
+}
+.new-client-input-content-vertical .content-connection {
+    padding: .5rem;
+    font-size: 10pt;
+    font-weight: 400;
+}
+
+.buttons {
+    justify-content: right;
+} */

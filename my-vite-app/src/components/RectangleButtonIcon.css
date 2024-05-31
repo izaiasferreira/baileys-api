@@ -1,0 +1,23 @@
+.rectangle-button-containerr {
+  padding: .5rem;
+  background-color: var(--two-color);
+  width: 6rem;
+  height: 8rem;
+  border-radius: .5rem;
+  color: var(--text-color-one);
+  margin: .5rem;
+}
+
+.rectangle-button {
+  background-color: var(--two-color);
+  cursor: pointer;
+  color: var(--text-color-one);
+  padding: .5rem;
+  border: none;
+  border-radius: 3px;
+}
+
+.rectangle-button:hover {
+  background-color: var(--four-color);
+  color: var(--text-color-one);
+}

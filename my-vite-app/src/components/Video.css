@@ -1,0 +1,48 @@
+
+
+.files-container .video-file-message{
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.icon-play i{
+    cursor: pointer;
+    font-size: 30pt;
+}
+
+
+.files-content-video{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.files-content-video img{
+    max-width: 15rem;
+    max-height: 15rem;
+}
+
+.icon-play-video{
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+
+
+
+/* .icon-play-video i{
+    position: relative;
+    left: 2px;
+    font-size: 25pt;
+} */
+
+.display-none{
+    opacity: 0;
+    position: absolute;
+}
+

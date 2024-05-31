@@ -1,0 +1,12 @@
+.profile-options-txt .input-edit{
+    padding: 5px;
+    outline: none;
+    background-color: var(--one-color);
+    color: var(--text-color-one);
+    border: none;
+    border-bottom: 2px solid var(--two-color);
+}
+
+.profile-options-txt select{
+    color: var( --text-color-one);
+}

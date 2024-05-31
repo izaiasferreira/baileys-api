@@ -1,0 +1,30 @@
+.bookmark-container-choose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: .3rem;
+  margin: .2rem;
+  height: 1.5rem;
+  width: 6rem;
+  border-radius: .3rem;
+  color: var(--text-color-two);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: .9;
+}
+
+.bookmark-container-choose:hover {
+  opacity: 1;
+}
+.bookmark-container-choose .body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+.bookmark-container-choose .name {
+  
+  font-size: 12pt;
+}

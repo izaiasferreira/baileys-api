@@ -1,0 +1,52 @@
+.bookmark-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem;
+  margin: .5rem;
+  height: 1.5rem;
+  width: 15rem;
+  border-radius: .5rem;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: .9;
+}
+
+.bookmark-container:hover {
+  opacity: 1;
+}
+
+.bookmark-container .icon i {
+  font-size: 13pt;
+  opacity: .6;
+}
+
+.bookmark-container .body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+.bookmark-container .name {
+  margin-left: .5rem;
+  font-size: 12pt;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /** número de linhas que você quer exibir */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bookmark-container .buttons {
+  display: flex;
+}
+
+.bookmark-container .buttons i {
+  opacity: .7;
+  font-size: 13pt;
+}
+
+.bookmark-container .buttons i:hover {
+  opacity: 1;
+}

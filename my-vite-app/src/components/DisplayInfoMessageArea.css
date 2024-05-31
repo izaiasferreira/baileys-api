@@ -1,0 +1,38 @@
+.display-info-message-area-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    top: -.5rem;
+    color: var(--text-color-one);
+    background-color: var(--two-color);
+    padding: .3rem;
+    animation-duration: 0.2s;
+    animation-name: slidein-response-message;
+    width: 98%;
+    max-height: 20rem;
+    
+    border-radius: .5rem;
+}
+
+.display-info-message-area-container .bar {
+    position: relative;
+    left: 0.2rem;
+    width: .5rem;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.display-info-message-area-container .display-info-message-area-middle {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.display-info-message-area-container .display-info-message-area-middle .children{
+    width: 100%;
+    height: 100%;
+    margin-left: 1rem;
+    overflow-y: auto;
+}

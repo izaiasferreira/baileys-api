@@ -1,0 +1,36 @@
+{
+  "scripts": {
+    "start": "pm2 start app.js --name baileys && pm2 logs",
+    "stop": "pm2 stop baileys",
+    "restart": "pm2 restart baileys",
+    "delete": "pm2 delete baileys",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "@adiwajshing/keyed-db": "^0.2.4",
+    "@aws-sdk/client-s3": "^3.490.0",
+    "@aws-sdk/s3-request-presigner": "^3.490.0",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@google/generative-ai": "^0.1.3",
+    "@whiskeysockets/baileys": "github:WhiskeySockets/Baileys",
+    "aws-sdk": "^2.1534.0",
+    "axios": "^0.26.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "cspell": "^8.3.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.17.3",
+    "file-type": "^18.5.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "mime": "^3.0.0",
+    "minio": "^7.0.32",
+    "mongoose": "^6.3.4",
+    "morgan": "^1.10.0",
+    "multer-s3": "^2.10.0",
+    "node-cache": "^5.1.2",
+    "pm2": "^5.3.1",
+    "socket.io": "^4.7.5",
+    "uuid": "^9.0.0"
+  }
+}

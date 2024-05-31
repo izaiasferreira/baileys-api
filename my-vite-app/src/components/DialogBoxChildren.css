@@ -1,0 +1,69 @@
+.dialog-box-children {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  justify-items: center;
+  width: 100vw;
+  max-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  animation-duration: 0.2s;
+  animation-name: eraser;
+  backdrop-filter: blur(3px);
+  overflow: hidden;
+}
+
+.dialog-box-children-disable {
+  display: none;
+}
+
+.dialog-box-children-back {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: var(--five-color);
+  opacity: 0.2;
+
+}
+
+.dialog-box-children-container {
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color-one);
+  background: var(--one-color);
+  box-shadow: 5px 5px 10px var(--background-color-modal);
+  border-radius: 10px;
+  overflow-y: auto;
+  max-height: 95vh;
+}
+
+
+
+.dialog-box-children-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: var(--text-color-one);
+  padding: 1rem;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.dialog-box-children-content .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dialog-box-children-content .text {
+  padding: .5rem;
+  font-size: 12pt;
+  font-weight: 400;
+  justify-content: center;
+}

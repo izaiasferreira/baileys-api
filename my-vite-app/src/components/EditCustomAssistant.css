@@ -1,0 +1,321 @@
+.edit-custom-assistant-container {
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.edit-custom-assistant-container .show-schema {
+    display: flex;
+    justify-content: flex-start;
+    background-color: var(--five-color);
+    width: 100%;
+}
+
+.edit-custom-assistant-container .show-schema .section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    min-width: 10rem;
+    min-height: 5rem;
+    border: 1px solid var(--six-color);
+}
+
+.edit-custom-assistant-container .show-schema .section:hover {
+    border: 1px solid var(--six-color);
+    transition: .15s;
+}
+
+
+.show-schema .message-section {
+    display: flex;
+    position: relative;
+    width: 100%;
+    border-radius: .5rem;
+}
+
+.show-schema .message-section .message-section-messages {
+    width: 17rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: .5rem;
+    padding: 1rem;
+}
+
+.show-schema .message-section .message-section-messages .action-container {
+    position: relative;
+    width: 13rem;
+    height: 2rem;
+    display: flex;
+    padding: .3rem;
+    align-items: center;
+    border-radius: .5rem;
+    background-color: var(--aditional-color-1);
+    margin-top: 1rem;
+}
+
+.show-schema .message-section .message-section-messages .action-container .content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.show-schema .message-section .message-section-messages .action-container .content i {
+    width: 1rem;
+    display: flex;
+    border-radius: .2rem;
+    padding: .2rem;
+    border: 1px solid var(--text-color-two);
+    color: var(--text-color-two);
+    margin-left: .3rem;
+}
+
+.show-schema .message-section .message-section-messages .action-container .content .text {
+    display: flex;
+    border-radius: .3rem;
+    padding: .2rem;
+    color: var(--text-color-two);
+    font-size: 10pt;
+    margin-left: .5rem;
+}
+
+.icon-type-message {
+    opacity: 0;
+}
+
+.show-schema .message-section .message-section-messages .start-conversation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.show-schema .message-section .message-section-messages .start-conversation span {
+    width: 70%;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    align-items: center;
+}
+
+.show-schema .message-section .message-section-messages .start-conversation span i {
+    color: var(--aditional-color-1);
+    margin: .3rem;
+}
+
+.show-schema .message-section .message-section-messages .end-conversation {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.show-schema .message-section .message-section-messages .end-conversation span {
+    width: 70%;
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    align-items: center;
+}
+
+.show-schema .message-section .message-section-messages .end-conversation span i {
+    color: var(--aditional-color-1);
+    margin: .3rem;
+}
+
+.show-schema .message-section:hover {
+    background-color: var(--two-color);
+}
+
+.show-schema .message-section .buttons {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    position: absolute;
+    right: -2.5rem;
+    top: 0rem;
+    transition: .7s;
+}
+
+.show-schema .message-section:hover>.buttons {
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    position: absolute;
+    right: -2.5rem;
+    top: -1.5rem;
+    transition: .7s;
+}
+
+.show-schema .message-section .button-plus {
+    opacity: 0;
+    position: absolute;
+}
+
+.show-schema .message-section:hover>.button-plus {
+    position: relative;
+    opacity: 1;
+    transition: .7s;
+}
+
+.edit-custom-assistant-container .show-schema .di {
+    width: 65%;
+    height: 2rem;
+    padding: .2rem;
+}
+
+.edit-custom-assistant-container .show-schema .di .option-lines {
+    margin: -1px;
+    width: 100%;
+    height: 2rem;
+    border: 2px solid var(--six-color);
+    border-bottom: none;
+    padding: .2rem;
+}
+
+.edit-custom-assistant-container .create-area {
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--four-color);
+    height: calc(100vh - 8vh);
+    width: 27rem;
+    padding: .5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.edit-custom-assistant-container .create-area .type .options .action-container {
+    position: relative;
+    width: 15rem;
+    height: 2rem;
+    display: flex;
+    padding: .3rem;
+    align-items: center;
+    border-radius: .5rem;
+    margin-left: .3rem;
+}
+
+.edit-custom-assistant-container .create-area .type .options .action-container .content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.edit-custom-assistant-container .create-area .type .options .action-container .content i {
+    width: 1rem;
+    display: flex;
+    border-radius: .2rem;
+    padding: .2rem;
+    /* border: 1px solid var(--text-color-two);
+    color: var(--text-color-two); */
+    margin-left: .3rem;
+}
+
+.edit-custom-assistant-container .create-area .type .options .action-container .content .text {
+    display: flex;
+    border-radius: .3rem;
+    padding: .2rem;
+    color: var(--text-color-one);
+    font-size: 10pt;
+    margin-left: .5rem;
+}
+
+.edit-custom-assistant-container .create-area .title {
+    padding: 1rem;
+    font-weight: 500;
+    font-size: 10pt;
+}
+
+.edit-custom-assistant-container .create-area .file-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.edit-custom-assistant-container .create-area .file-preview .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.edit-custom-assistant-container .create-area .inputs-for-message {
+    display: flex;
+    align-items: center;
+}
+
+.edit-custom-assistant-container .create-area .file-hide {
+    display: none;
+}
+
+.types-container {
+    padding: .5rem;
+}
+
+.types-container .title {
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+    width: 100%;
+    font-weight: 500;
+    font-size: 10pt;
+}
+
+.icon-type-message {
+    width: 1.5rem;
+}
+
+.icon-type-message {
+    padding: .3rem;
+    background-color: var(--tree-color);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    color: var();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -.5rem;
+    left: -1.5rem;
+    opacity: 0;
+    transition: .5s;
+}
+
+.message-section :hover>.icon-type-message {
+    padding: .3rem;
+    background-color: var(--aditional-color-1);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    color: var();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -.5rem;
+    left: -.5rem;
+    opacity: 1;
+    transition: .2s;
+}
+
+.icon-type-message-i {
+    position: absolute;
+    top: 30%;
+    color: var(--text-color-two);
+    font-size: 10pt;
+}

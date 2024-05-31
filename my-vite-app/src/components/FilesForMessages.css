@@ -1,0 +1,98 @@
+.files-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: .3rem;
+}
+
+.files-container .caption {
+    background-color: blueviolet;
+}
+
+.files-container .img {
+    height: 15rem;
+    width: 15rem;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon-play i {
+    cursor: pointer;
+    font-size: 30pt;
+}
+
+.files-content-response {
+    overflow: hidden;
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: .5rem;
+    background-color: var(--one-color);
+}
+
+.files-content-response .content {
+    color: var(--text-color-one);
+    opacity: 1;
+}
+
+.message-container-attendance .files-content-document, .message-container-client .files-content-document {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    height: 2rem;
+    max-width: 15rem;
+    min-width: 10rem;
+    border-radius: .3rem;
+}
+.message-container-attendance .files-content-document .text, .message-container-client .files-content-document .text{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-items: flex-start;
+    font-size: 10pt;
+    font-weight: 500 ;
+}
+
+.message-container-client .files-content-document .text a {
+    color: var(--text-color-one);
+    width: 100%;
+}
+.message-container-client .files-content-document .text .span {
+    font-weight: 400;
+    font-size: 8pt;
+    color: var(--text-color-one);
+    width: 100%;
+}
+
+.message-container-client .files-content-document  i {
+    color: var(--text-color-tree);
+    font-size: 25pt;
+    margin-right: .5rem;
+}
+
+.message-container-attendance .files-content-document .text a {
+    color: var(--text-color-two);
+    width: 100%;
+}
+
+.message-container-attendance .files-content-document .text .span {
+    font-weight: 400;
+    font-size: 8pt;
+    color: var(--text-color-two);
+    width: 100%;
+}
+.message-container-attendance .files-content-document  i {
+    color: var(--text-color-two);
+    font-size: 25pt;
+    margin-right: .5rem;
+}
+
+
+
+.display-none {
+    opacity: 0;
+    position: absolute;
+}

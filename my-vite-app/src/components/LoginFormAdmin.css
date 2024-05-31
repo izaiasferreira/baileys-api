@@ -1,0 +1,123 @@
+
+.loginadmin-form-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    padding: 3rem;
+    border-radius: 1rem;
+    background-color: var(--one-color);
+}
+.loginadmin-form-container img{
+   width: 20rem;
+}
+.loginadmin-form-header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-color-one);
+}
+.loginadmin-form-header h1{
+   font-size: 20pt;
+   font-weight: 500;
+   margin: 10px;
+}
+
+.loginadmin-form-header h3{
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 300;
+ }
+.loginadmin-form-middle{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+}
+.loginadmin-form-middle .contact-link{
+    color: var(--text-color-one);
+    margin-top: 5px;
+    font-size: 12pt;
+    font-weight: 300;
+    cursor: pointer;
+}
+.loginadmin-form-middle .contact-link a{
+    color: var(--tree-color);
+    margin-top: 5px;
+    font-size: 10pt;
+    font-weight: 300;
+    cursor: pointer;
+}
+.loginadmin-containers-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 30%;
+    color: var(--text-color-one);
+}
+
+.loginadmin-containers-inputs .inputs-for-login  {
+    background-color: var(--one-color);
+    border: solid 0px;
+    border-radius: 5px;
+    width: 70%;
+    height: 40%;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 30px;
+    color: var(--text-color-one);
+    outline: none;
+}
+.loginadmin-containers-inputs .inputs-for-login input {
+    background-color: var(--text-color-one);
+}
+
+
+.loginadmin-containers-inputs .text-login {
+    font-size: 12pt;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 5px;
+}
+.loginadmin-form-footer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white-color);
+    width: 100%;
+
+}
+.loginadmin-form-footer button{
+    border: none;
+    border-radius: 50px;
+    width: 70%;
+    padding: 10px;
+    background-color: var(--tree-color);
+    color: var(--text-color-two);
+    cursor: pointer;
+    margin: 20px;
+}
+
+@media(max-width: 579px) and  (min-width: 300px){
+    .loginadmin-form-header h3{
+        display: none;
+     }
+     .loginadmin-form-container img{
+        width: 50%;
+     }
+     .loginadmin-form-header h1{
+        font-size: 20pt;
+        font-weight: 500;
+        margin: 0px;
+     }
+     
+}

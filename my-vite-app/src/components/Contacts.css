@@ -1,0 +1,13 @@
+.contacts-container{
+    padding: .3rem;
+    width: 79vw;
+    height: 79vh;
+    background-color: var(--one-color);
+}
+
+.contacts-container .header-contacts{
+    padding: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,69 @@
+.input-text-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+}
+
+.input-text-container .normal-size {
+    height: 1rem;
+}
+
+.input-text-container .large-size {
+    height: 2rem;
+}
+
+
+.input-text-container .normal {
+    width: 100%;
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    background-color: var(--two-color);
+    color: var(--text-color-one);
+    opacity: .9;
+    margin: .5rem;
+}
+
+.input-text-container .clean {
+    width: 100%;
+    padding: .5rem ;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0);
+    color: var(--text-color-one);
+    border: none;
+    border-bottom: 2px solid var(--tree-color);
+}
+
+.input-text-container input::placeholder {
+    color: var(--text-color-one);
+    opacity: .4;
+}
+
+.input-text-container .emoji-container {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-text-container .icon-to-input {
+    position: absolute;
+    right: 1rem;
+    z-index: 1;
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+.input-text-container .icon-to-input i {
+    font-size: 15pt;
+    padding: .2rem;
+    font-weight: 700;
+    opacity: .6;
+    animation-name: eraserIconSeach;
+    animation-duration: .5s;
+}

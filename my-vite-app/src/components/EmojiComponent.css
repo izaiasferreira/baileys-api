@@ -1,0 +1,49 @@
+.emoji-container {
+    position: relative;
+    overflow: visible;
+}
+
+.emoji-container .emoji-content-top-left {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    z-index: 9999;
+}
+
+.emoji-container .emoji-content-bottom-left {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 9999;
+}
+
+.emoji-container .emoji-content-top-right {
+    position: absolute;
+    bottom: 100%;
+    right: 50%;
+    z-index: 9999;
+}
+
+.emoji-container .emoji-content-bottom-right {
+    position: absolute;
+    top: 100%;
+    right: 50%;
+    z-index: 9999;
+}
+
+.emoji-container .emoji-disabled {
+    display: none;
+}
+
+.emoji-container .emoji-container-back {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.emoji-container .disabled {
+    display: none;
+}
