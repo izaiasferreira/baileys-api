@@ -17,8 +17,8 @@ export default function Home() {
 
   } = useContext(AppContext)
   const [instances, setInstances] = useState([])
-  // const url = window.location.href
-  const url = `http://localhost:3001`
+  const url = window.location.href
+  // const url = `http://localhost:3001`
   useEffect(() => {
     setSocket(io(url, {
       reconnection: true,        // Habilita reconexão automática

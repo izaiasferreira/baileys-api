@@ -39,8 +39,8 @@ export default function InstancesForList({ instance, setInstances }) {
         })
 
     }
-    function styleStatusConnection(params) {
-        const all = { marginTop: '.4rem', backgroundColor: 'var(--two-color)', padding: '.5rem', borderRadius: '.5rem', fontWeight: '700' }
+    function styleStatusConnection(instance) {
+        const all = { backgroundColor: 'var(--two-color)', padding: '.5rem', borderRadius: '.5rem', fontWeight: '700' }
         if (instance.statusConnection === 'qrcode') return { ...all, color: 'var(--warn-color)' }
         if (instance.statusConnection === 'connected') return { ...all, color: 'var(--success-color)' }
         if (instance.statusConnection === 'disconnected') return { ...all, color: 'var(--danger-color)' }
@@ -78,10 +78,10 @@ export default function InstancesForList({ instance, setInstances }) {
                 {instance.statusConnection === 'connected' && instance.profilePic ?
                     <img style={
                         {
-                            width:'20%',
-                            borderRadius:'100%',
+                            width: '20%',
+                            borderRadius: '100%',
                             objectFit: 'cover'
-                            
+
                         }
                     }
                         src={instance.profilePic}
@@ -93,7 +93,24 @@ export default function InstancesForList({ instance, setInstances }) {
                 <div className="name" >{instance?.name}</div>
                 <div className="info" > {instance?.id} </div>
                 <div className="info" >{instance?.phoneNumberFormated || '+99 99 9999-9999'}</div>
+                <div className="info" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '.5rem',
+                    borderRadius: '.5rem',
+                    fontWeight: '700'
+                }}>
+                    <IconButton size='small' onClick={() => {
+                        if (instance?.token) {
+                            navigator.clipboard.writeText(instance?.token)
+                            alert('Token copiado')
+                        }
+                        else alert('A instância ainda não possui um token')
+                    }}><i className='bx bx-clipboard'></i></IconButton>
+                    Token
+                </div>
                 <div className="info" style={styleStatusConnection(instance)}>{instance?.statusConnection}</div>
+
             </div>
             <div className="footer">
                 <PrimaryButtonGenerics
