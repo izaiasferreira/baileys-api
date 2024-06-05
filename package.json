@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "cd ./front && npm run build && cd ..&  pm2 start app.js --name baileys && pm2 logs",
+    "start": "cd ./front && npm install && npm run build && cd .. && pm2 start app.js --name baileys && pm2 logs",
     "stop": "pm2 stop baileys",
     "restart": "pm2 restart baileys",
     "delete": "pm2 delete baileys",
