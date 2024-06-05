@@ -40,9 +40,9 @@ export default function InstancesForList({ instance, setInstances }) {
 
     }
     function styleStatusConnection(params) {
-        const all = { marginTop: '.4rem', backgroundColor: 'var(--two-color)', padding: '.5rem', borderRadius: '.5rem', fontWeight:'700' }
-        if (instance.statusConnection === 'qrcode') return  { ...all, color: 'var(--warn-color)' }
-        if (instance.statusConnection === 'connected') return  { ...all, color: 'var(--success-color)' }
+        const all = { marginTop: '.4rem', backgroundColor: 'var(--two-color)', padding: '.5rem', borderRadius: '.5rem', fontWeight: '700' }
+        if (instance.statusConnection === 'qrcode') return { ...all, color: 'var(--warn-color)' }
+        if (instance.statusConnection === 'connected') return { ...all, color: 'var(--success-color)' }
         if (instance.statusConnection === 'disconnected') return { ...all, color: 'var(--danger-color)' }
 
     }
@@ -75,7 +75,18 @@ export default function InstancesForList({ instance, setInstances }) {
             </div>
 
             <div className="header-instance">
-                {instance.statusConnection === 'connected' && instance.profilePic}
+                {instance.statusConnection === 'connected' && instance.profilePic ?
+                    <img style={
+                        {
+                            width:'20%',
+                            borderRadius:'100%',
+                            objectFit: 'cover'
+                            
+                        }
+                    }
+                        src={instance.profilePic}
+                    /> :
+                    <div className="icon" style={true ? { color: 'var(--tree-color)' } : { color: 'var(--five-color)' }}><i className='bx bxl-whatsapp' /></div>}
             </div>
             <Bar />
             <div className="body">

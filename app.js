@@ -230,67 +230,64 @@ app.get('/contacts', verifyJWT, async (req, res) => {
 
 });
 
-app.post('/sendMessageText', async (req, res) => {
-    const { id } = req.query
-    var data = req.body
-    var index = findInstance(id)
-    // console.log(`MENSAGEM: ${data.text} | PARA: ${data.id}`);
-    if (index >= 0 && index !== null && index !== null) {
-        var response = await globalVars.instances[index].sendMessageText(data.id, data.text)
-        res.status(200).json(response)
-    } else {
-        res.status(400).end()
+app.post('/sendMessageText', verifyJWT, async (req, res) => {
+    try {
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var response = await globalVars.instances[req.instance].sendMessageText(req.body)
+            res.status(200).json(response)
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 
-app.post('/sendMessageMedia', async (req, res) => {
-    const { id } = req.query
-    var data = req.body
-    console.log(data);
-    var index = findInstance(id)
-    if (index >= 0 && index !== null && index !== null) {
-        var response = await globalVars.instances[index].sendMessageImage(data.id, data.text, data.url)
-        res.status(200).json(response).end()
-    } else {
-        res.status(400).end()
+app.post('/sendMessageMedia', verifyJWT, async (req, res) => {
+    try {
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var response = await globalVars.instances[req.instance].sendMessageMedia(req.body)
+            res.status(200).json(response)
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 
-app.post('/sendMessageButtons', async (req, res) => {
-    const { id: sessionId } = req.query
-    var data = req.body
-    const { id, buttons, title, description, footer } = data
-    var index = findInstance(sessionId)
-    if (index >= 0 && index !== null) {
-        var response = await globalVars.instances[index].sendMessageButtons(id, buttons, title, description, footer)
-        res.status(200).json(response).end()
-    } else {
-        res.status(400).end()
+app.put('/editMessage', verifyJWT, async (req, res) => {
+    try {
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var response = await globalVars.instances[req.instance].updateMessage(req.body)
+            res.status(200).json(response)
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 
-app.post('/sendMessageList', async (req, res) => {
-    const { id: sessionId } = req.query
-    var data = req.body
-    const { id, buttons, title, description, footer } = data
-    var index = findInstance(sessionId)
-    if (index >= 0 && index !== null) {
-        var response = await globalVars.instances[index].sendMessageList(id, buttons, title, description, footer)
-        res.status(200).json(response).end()
-    } else {
-        res.status(400).end()
-    }
-});
 
-app.post('/deleteMessage', async (req, res) => {
-    const { id: sessionId } = req.query
-    const { id, msg, type } = req.body
-    var index = findInstance(sessionId)
-    if (index >= 0 && index !== null && msg && msg.msg && type && id) {
-        var response = await globalVars.instances[index].deleteMessage(id, msg.msg, type)
-        res.status(200).json(response).end()
-    } else {
-        res.send(null).end()
+app.delete('/deleteMessage', verifyJWT, async (req, res) => {
+    try {
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var response = await globalVars.instances[req.instance].deleteMessage(req.body)
+            res.status(200).json(response)
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 

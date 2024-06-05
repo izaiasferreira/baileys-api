@@ -93,6 +93,7 @@
 }
 .instance-option-container .body .info {
     font-size: 8pt;
+    padding: .2rem;
 }
 .instance-option-container .body .id {
     font-size: 8pt;

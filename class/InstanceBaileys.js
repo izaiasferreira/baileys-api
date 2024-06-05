@@ -219,9 +219,7 @@ class Baileys {
             var contactsForSync = []
             console.log('Salvando contatos');
             for (const contact of contacts) {
-                // console.log(contact.id);
-                // await sleep(300);
-                var profilepic = await this.sock.profilePictureUrl(contact.id, 'image').catch(err => console.log('Sem foto')) || null
+                var profilepic = await this.sock.profilePictureUrl(contact.id, 'image').catch(err => { }) || null
                 contactsForSync.push({
                     id: contact.id,
                     userName: contact.name || formatIdToPhoneNumber(contact.id),
@@ -242,6 +240,13 @@ class Baileys {
 
 
         })
+        this.sock.ev.on('presence.update', async (data) => {
+            await this.sendEventForWebhook({
+                event: 'presence.update',
+                data: data
+            })
+        })
+
         this.sock.ev.on('messages.upsert', async ({ messages }) => {
             for (const msg of messages) {
                 if (msg?.message) {
@@ -261,6 +266,7 @@ class Baileys {
             }
 
         })
+
     }
 
     async endSession(deleteSession) {
@@ -299,11 +305,12 @@ class Baileys {
 
         const body = {
             event: event,
-            data: data
+            data: data,
+            info: { instanceId: this.state.id }
         };
 
         if (more) {
-            body.info = more;
+            body.info = { ...body.info, ...more };
         }
         globalVars.io.emit('events', body)
         if (this.state.webhook.state) {
@@ -351,18 +358,19 @@ class Baileys {
     }
 
     async sendMessageMedia({ id, type, text, url, fileName, mimeType, quoted, newAudio }) {
+        if (!type) return { message: 'Não foi encontrado o tipo de mensagem' }
         var messageArray = [
             `${id.replace(/[\s-()]/g, '')}@s.whatsapp.net`,
             {
-                caption: text || null,
-                fileName: fileName,
-                mimetype: mimeType,
-                ptt: newAudio || false,
                 [type]: {
                     url: url,
                 }
             }
         ];
+        if (text) messageArray[1]['caption'] = text
+        if (fileName) messageArray[1]['fileName'] = fileName
+        if (mimeType) messageArray[1]['mimeType'] = mimeType
+        if (newAudio) messageArray[1]['ptt'] = true
         if (quoted) {
             messageArray.push({ quoted: quoted });
         }
@@ -371,18 +379,27 @@ class Baileys {
         }
     }
 
-    async deleteMessage(jid, msg, type) {
-        const { key, fromMe, messageTimestamp } = msg
-        if (this.sock) {
-            var response = null
-            if (type) {
-                response = await this.sock.sendMessage(jid, { delete: key })
-            }
-            if (!type) {
-                response = await this.sock.chatModify({ clear: { messages: [{ id: key.id, fromMe: fromMe, timestamp: messageTimestamp }] } }, jid, [])
+    async updateMessage({ id, text = '', msg }) {
+        id = `${id.replace(/[\s-()]/g, '')}@s.whatsapp.net`
 
+        if (this.sock) {
+            return await this.executeSendMessage([id, {
+                text: text,
+                edit: msg.key,
+            }])
+        }
+    }
+    async deleteMessage({ id, msg, forAll }) {
+        if (!msg) return { message: 'Não foi possível encontrar a mensagem' }
+        id = `${id.replace(/[\s-()]/g, '')}@s.whatsapp.net`
+
+        if (this.sock) {
+            const { key, messageTimestamp } = msg
+            if (forAll) {
+                return await this.sock.sendMessage(id, { delete: key })
             }
-            return response
+            key.timestamp = messageTimestamp
+            return await this.sock.chatModify({ clear: { messages: [key] } }, id, [])
         }
     }
 
@@ -428,12 +445,13 @@ function sleep(ms) {
 }
 
 const formatIdToPhoneNumber = (idClient) => {
-    var number = `${idClient.replace('@s.whatsapp.net', '')}`
-    var country = number.slice(0, 2);
-    var ddd = number.slice(2, 4)
-    var numberPartOne = number.slice(4, 8)
-    var numberPartTwo = number.slice(8, 12)
-    return `+${country} (${ddd}) ${numberPartOne}-${numberPartTwo}`
+    var number = `${jidNormalizedUser(idClient).replace('@s.whatsapp.net', '')}`
+    // var country = number.slice(0, 2);
+    // var ddd = number.slice(2, 4)
+    // var numberPartOne = number.slice(4, 8)
+    // var numberPartTwo = number.slice(8, 12)
+    // return `+${country} (${ddd}) ${numberPartOne}-${numberPartTwo}`
+    return number
 }
 
 
