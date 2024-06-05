@@ -331,10 +331,6 @@ class Baileys {
         if (url) this.state.webhook.url = url
     }
 
-    async getProfilePic(jid) {
-        return await this.sock.profilePictureUrl(jid, 'image')
-    }
-
     //--------------------------------------------------------
 
     async executeSendMessage(arrayParams) {
@@ -346,7 +342,7 @@ class Baileys {
         }
     }
     async sendMessageText({ id, text, quoted }) {
-        const messageArray = [`${id.replace(/[\s-()]/g, '')}@s.whatsapp.net`, { text: text }];
+        const messageArray = [formatPhoneNumberToId(id), { text: text }];
 
         if (quoted) {
             messageArray.push({ quoted: quoted });
@@ -356,11 +352,11 @@ class Baileys {
             return await this.executeSendMessage(messageArray)
         }
     }
-
+    
     async sendMessageMedia({ id, type, text, url, fileName, mimeType, quoted, newAudio }) {
         if (!type) return { message: 'Não foi encontrado o tipo de mensagem' }
         var messageArray = [
-            `${id.replace(/[\s-()]/g, '')}@s.whatsapp.net`,
+            formatPhoneNumberToId(id),
             {
                 [type]: {
                     url: url,
@@ -380,10 +376,9 @@ class Baileys {
     }
 
     async updateMessage({ id, text = '', msg }) {
-        id = `${id.replace(/[\s-()]/g, '')}@s.whatsapp.net`
 
         if (this.sock) {
-            return await this.executeSendMessage([id, {
+            return await this.executeSendMessage([formatPhoneNumberToId(id), {
                 text: text,
                 edit: msg.key,
             }])
@@ -391,15 +386,14 @@ class Baileys {
     }
     async deleteMessage({ id, msg, forAll }) {
         if (!msg) return { message: 'Não foi possível encontrar a mensagem' }
-        id = `${id.replace(/[\s-()]/g, '')}@s.whatsapp.net`
 
         if (this.sock) {
             const { key, messageTimestamp } = msg
             if (forAll) {
-                return await this.sock.sendMessage(id, { delete: key })
+                return await this.sock.sendMessage(formatPhoneNumberToId(id), { delete: key })
             }
             key.timestamp = messageTimestamp
-            return await this.sock.chatModify({ clear: { messages: [key] } }, id, [])
+            return await this.sock.chatModify({ clear: { messages: [key] } }, formatPhoneNumberToId(id), [])
         }
     }
 
@@ -433,11 +427,22 @@ class Baileys {
         return null
     }
 
-    async veriyExistsNumber(jid) {
-        if (jid && this.sock) {
-            const value = await this.sock.onWhatsApp(jid);
-            return value[0]
+    async updatePresence({ presence, id }) {
+        await this.sock.sendPresenceUpdate(presence || 'available', formatPhoneNumberToId(id))
+    }
+
+    async veriyExistsNumber(id) {
+        console.log(id);
+        if (id && this.sock) {
+            const value = await this.sock.onWhatsApp(formatPhoneNumberToId(id));
+            if (value.length > 0) return value[0]
+            return { exists: false, jid: formatPhoneNumberToId(id) }
+
         }
+    }
+    
+    async getProfilePic(id) {
+        return await this.sock.profilePictureUrl(formatPhoneNumberToId(id), 'image')
     }
 }
 
@@ -445,6 +450,9 @@ module.exports = Baileys;
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+const formatPhoneNumberToId = (phone) => {
+    return `${phone?.replace(/[\s-()]/g, '')}@s.whatsapp.net`
 }
 
 const formatIdToPhoneNumber = (idClient) => {

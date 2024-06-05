@@ -169,6 +169,8 @@ app.delete('/instance', verifyJWT, async (req, res) => {
 });
 
 
+
+
 app.put('/webhook', verifyJWT, async (req, res) => {
     try {
         const { state, events, url } = req.body
@@ -192,7 +194,6 @@ app.put('/webhook', verifyJWT, async (req, res) => {
         return res.status(400).json(error).end()
     }
 });
-
 
 app.get('/connect', verifyJWT, async (req, res) => {
     try {
@@ -219,16 +220,8 @@ app.delete('/disconnect', verifyJWT, async (req, res) => {
     }
 });
 
-app.get('/contacts', verifyJWT, async (req, res) => {
-    try {
-        var session = await db.getSession({ id: req.instance })
-        return res.status(200).json(session?.contacts || []).end()
-    } catch (error) {
-        console.log(error);
-        return res.status(400).json(error).end()
-    }
 
-});
+
 
 app.get('/downloadMedia', verifyJWT, async (req, res) => {
     try {
@@ -295,7 +288,6 @@ app.put('/editMessage', verifyJWT, async (req, res) => {
     }
 });
 
-
 app.delete('/deleteMessage', verifyJWT, async (req, res) => {
     try {
         const instance = await findInstance(req.instance)
@@ -311,28 +303,64 @@ app.delete('/deleteMessage', verifyJWT, async (req, res) => {
     }
 });
 
-app.post('/verifyExistsNumber', async (req, res) => {
-    const { id: sessionId } = req.query
-    const { id } = req.body
-    console.log(id);
-    var index = findInstance(sessionId)
-    if (!index) {
-        var status = await globalVars.instances[index].veriyExistsNumber(id)
-        res.status(200).json(status).end()
-    } else {
-        res.status(204).end()
+
+
+
+app.get('/contacts', verifyJWT, async (req, res) => {
+    try {
+        var session = await db.getSession({ id: req.instance })
+        return res.status(200).json(session?.contacts || []).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+
+});
+
+app.get('/verifyExistsNumber', verifyJWT, async (req, res) => {
+    try {
+        const { id } = req.query
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var response = await globalVars.instances[req.instance].veriyExistsNumber(id)
+            res.status(200).json(response)
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 
-app.post('/getProfilePic', async (req, res) => {
-    const { id: sessionId } = req.query
-    const { id } = req.body
-    var index = findInstance(sessionId)
-    if (index >= 0 && index !== null && id) {
-        var status = await globalVars?.instances[index]?.getProfilePic(id).catch(err => console.log('erro getProfilePic'))
-        res.status(200).json(status).end()
-    } else {
-        res.status(204).end()
+app.get('/getProfilePic', verifyJWT, async (req, res) => {
+    try {
+        const { id } = req.query
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var response = await globalVars.instances[req.instance].getProfilePic(id)
+            res.status(200).json(response)
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+});
+
+app.post('/updatePresence', verifyJWT, async (req, res) => {
+    try {
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var response = await globalVars.instances[req.instance].updatePresence(req.body)
+            res.status(200).json(response)
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 
