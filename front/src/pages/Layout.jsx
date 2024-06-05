@@ -20,7 +20,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    setSocket(io(`http://localhost:3001`, {
+    setSocket(io(window.location.href/* `http://localhost:3001` */, {
       reconnection: true,        // Habilita reconexão automática
       reconnectionAttempts: Infinity,   // Número máximo de tentativas de reconexão
       reconnectionDelay: 1000,   // Atraso entre as tentativas de reconexão (em milissegundos)
@@ -43,7 +43,7 @@ export default function Home() {
       const index = instances.findIndex(i => i.id === data.data.id)
       instancesCopy[index] = data.data
       setInstances(instancesCopy)
-    } 
+    }
   });
 
   socket?.off('updateInstances').on("updateInstances", (data) => {
