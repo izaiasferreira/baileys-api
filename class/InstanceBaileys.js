@@ -404,6 +404,7 @@ class Baileys {
     }
 
     async downloadMedia(msg) {
+        console.log(msg);
         const typeMessage = Object.keys(msg.message)[0]
         if (typeMessage === 'stickerMessage') {
             msg.message.stickerMessage.url = 'https://mmg.whatsapp.net' + msg.message.stickerMessage.directPath + "&mms3=true"
@@ -424,7 +425,10 @@ class Baileys {
             for await (const chunk of stream) {
                 buffer = Buffer.concat([buffer, chunk])
             }
-            return buffer
+            return {
+                buffer: buffer,
+                type: fileType?.type
+            }
         }
 
         return null

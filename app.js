@@ -230,6 +230,26 @@ app.get('/contacts', verifyJWT, async (req, res) => {
 
 });
 
+app.get('/downloadMedia', verifyJWT, async (req, res) => {
+    try {
+        const instance = await findInstance(req.instance)
+        if (instance && instance.statusConnection === 'connected' && globalVars.instances[req.instance]) {
+            var file = await globalVars.instances[req.instance].downloadMedia(req.body)
+            res.setHeader('Content-Disposition', `attachment;`);
+            res.setHeader('Content-Type', 'application/octet-stream');
+            res.setHeader('Content-Length', file.buffer.length);
+
+            // Envie o buffer na resposta
+            return res.send(file.buffer).status(200).end();
+        } else {
+            return res.status(400).json({ message: 'Conexão desconectada' }).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+});
+
 app.post('/sendMessageText', verifyJWT, async (req, res) => {
     try {
         const instance = await findInstance(req.instance)

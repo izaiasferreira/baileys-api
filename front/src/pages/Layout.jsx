@@ -17,10 +17,10 @@ export default function Home() {
 
   } = useContext(AppContext)
   const [instances, setInstances] = useState([])
-
-
+  // const url = window.location.href
+  const url = `http://localhost:3001`
   useEffect(() => {
-    setSocket(io(window.location.href/* `http://localhost:3001` */, {
+    setSocket(io(url, {
       reconnection: true,        // Habilita reconexão automática
       reconnectionAttempts: Infinity,   // Número máximo de tentativas de reconexão
       reconnectionDelay: 1000,   // Atraso entre as tentativas de reconexão (em milissegundos)
