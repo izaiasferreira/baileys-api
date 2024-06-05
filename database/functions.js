@@ -1,22 +1,21 @@
 
 const Session = require("./schemas/Sessions")
-const AuthSessionSchema = require("./schemas/AuthSession");
 const globalVars = require("../globalVars");
 const { ObjectId } = require('mongodb');
 
 //---------------------------------------------------------------
-async function find(collection, database, filter) {
-    // console.log('find', collection, database.name, filter);
-    if (collection && database) {
-        var collection = database.collection(collection)
-        var cursor = await collection.find(filter || {})
-        var result = []
-        await cursor.forEach(document => {
-            result.push(JSON.parse(JSON.stringify(document)))
-        });
-        return result
+async function find(collectionName, database, filter = {}) {
+    if (database && collectionName) {
+        const collection = database.collection(collectionName);
+        const cursor = collection.find(filter);
+        const result = await cursor.toArray();
+        return result;
+    } else {
+        throw new Error('Database and collection must be provided');
     }
 }
+
+
 async function findLimit(collection, database, filter, skip, limit) {
     // console.log('find', collection, database.name, filter);
     if (collection && database) {
@@ -127,19 +126,28 @@ async function deleteMany(collectionString, database, filter) {
 
 
 exports.createSession = async (obj) => {
-    // console.log(globalVars.database);
     var session = await create('sessions', globalVars.database, obj)
     return session
 }
 
 exports.updateSession = async (filter, update) => {
     await updateOne('sessions', globalVars.database, filter, update)
-    return await findOne('sessions', globalVars.database, filter)
+    return await this.getSession(filter)
 }
 
 
 exports.getSession = async (filter) => {
     var session = await await findOne('sessions', globalVars.database, filter)
+    if (session) {
+        return session
+    }
+    return false
+
+
+}
+
+exports.getSessions = async (filter) => {
+    var session = await find('sessions', globalVars.database, filter || {})
     if (session) {
         return session
     }
@@ -167,7 +175,7 @@ exports.deleteSession = async (id) => {
 
 exports.deleteAuthSession = async (sessionId) => {
     await deleteMany('authsessions', globalVars.database, { sessionId: sessionId })
-    console.log('Sessão deletada do banco');
+    console.log('Keys da sessão deletada do banco');
 }
 
 

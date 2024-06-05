@@ -3,20 +3,25 @@ const { v4: uuidv4 } = require('uuid');
 const makeWASocket = require('@whiskeysockets/baileys').default
 const axios = require('axios')
 const NodeCache = require("node-cache");
+const { faker } = require('@faker-js/faker');
 const {
     DisconnectReason,
     fetchLatestBaileysVersion,
     downloadContentFromMessage,
     isJidBroadcast,
     isJidGroup,
-    makeCacheableSignalKeyStore
+    makeCacheableSignalKeyStore,
+    useMultiFileAuthState,
+    Browsers,
+    jidNormalizedUser
 } = require('@whiskeysockets/baileys')
 
 const P = require('pino')
 const db = require('../database/functions')
 const globalVars = require('../globalVars')
 
-const useMongoAuthState = require('../database/useMongoAuthState.js')
+const useMongoAuthState = require('../database/useMongoAuthState.js');
+const { generateToken } = require('../config/auth.js');
 
 const msgCache = new NodeCache({ stdTTL: 60, checkperiod: 30, useClones: false });
 
@@ -50,18 +55,22 @@ function msg() {
 const msgDB = msg()
 
 class Baileys {
-    constructor({ id, infos }) {
+    constructor({ id, name, infos }) {
+        this.id = id || uuidv4()
         this.state = infos || {
-            id: id || uuidv4(),
+            id: this.id,
+            name: name || `${faker.word.sample()} ${faker.word.sample()}`,
             statusConnection: 'disconnected',
+            token: generateToken({ time: '100y', data: { id: this.id } }),
             qrcode: null,
             webhook: {
                 state: false,
                 url: null,
                 events: {
                     messageUpsert: true,
+                    contactsUpsert: true,
                     updateConnectionStatus: true,
-                    groupMessageUpsert: false,
+                    groupMessageUpsert: true,
                 }
             }
         }
@@ -71,28 +80,16 @@ class Baileys {
         this.authState = {}
         this.userDevicesCache = new NodeCache();
         this.msgRetryCounterCache = new NodeCache()
+        delete this.id
     }
 
-    get sock() {
-        if (this.sock) return this.sock
-    }
-
-    set sock(value) {
-        this._sock = value;
-    }
-
-
-    get dataSession() {
-        return this.state
-    }
 
     async connectOnWhatsapp() {
         const { version } = await fetchLatestBaileysVersion()
-
         this.authState = await useMongoAuthState(this.state.id, false)
 
         this.sock = makeWASocket({
-            browser: ['CatTalk 😺', this._name, 'Chrome'],
+            browser: Browsers.ubuntu('Chrome'),
             printQRInTerminal: false,
             connectTimeoutMs: 60_000,
             auth: {
@@ -106,7 +103,7 @@ class Baileys {
             version,
             retryRequestDelayMs: 10,
             connectTimeoutMs: 60_000,
-            qrTimeout: 40_000,
+            qrTimeout: 20_000,
             // shouldIgnoreJid: (jid) => isJidGroup(jid) || isJidBroadcast(jid),
             getMessage: msgDB.get,
             emitOwnEvents: false,
@@ -116,13 +113,17 @@ class Baileys {
             syncFullHistory: true,
             transactionOpts: { maxCommitRetries: 5, delayBetweenTriesMs: 50 }
         })
+        console.log('Socket Criado');
         this.sock.ev.on('creds.update', this.authState.saveCreds)
         this.sock.ev.on('connection.update', async ({ connection, lastDisconnect, qr }) => {
             if (qr) {
+                console.log('Enviando qrcode');
                 if (this.countQRCode === 5) {
                     this.countQRCode = 0
+                    this.state.qrcodeCount = this.countQRCode
                     this.state.statusConnection = 'timeout'
                     this.state.qrcode = null
+
                     await this.sendEventForWebhook({
                         event: 'qrcode.update',
                         data: this.state
@@ -135,10 +136,11 @@ class Baileys {
                     })
 
                     this.sock.ev.removeAllListeners()
-                    this.end(true)
+                    this.endSession()
 
                 } else {
                     this.countQRCode++
+                    this.state.qrcodeCount = this.countQRCode
                     this.state.statusConnection = 'qrcode'
                     this.state.qrcode = qr
 
@@ -146,14 +148,17 @@ class Baileys {
                         event: 'qrcode.update',
                         data: this.state
                     })
+
+                    await db.updateSession({ id: this.state.id }, this.state)
                 }
+
             }
 
             if (connection === 'close') {
                 const shouldRecnnect = lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut
                 if (shouldRecnnect) {
                     if (lastDisconnect.error?.output?.statusCode === 401 && this.countReconnect > 3) {
-                        this.end()
+                        this.endSession()
                         this.connectOnWhatsapp()
                     } else if ((lastDisconnect.error?.output?.statusCode === 410 ||
                         lastDisconnect.error?.output?.statusCode === 408) &&
@@ -175,8 +180,8 @@ class Baileys {
                             event: 'connection.update',
                             data: this.state
                         })
-
-                        this.end()
+                        await db.updateSession({ id: this.state.id }, this.state)
+                        this.endSession()
                     } else {
                         this.connectOnWhatsapp()
                         this.countReconnect++
@@ -186,10 +191,10 @@ class Baileys {
             }
 
             if (connection === 'open') {
-                this.state.jid = this.sock.user.id
+                this.state.jid = jidNormalizedUser(this.sock.user.id)
                 this.state.phoneNumber = this.state.jid.substring(0, 12)
                 this.state.phoneNumberFormated = formatIdToPhoneNumber(this.state.jid)
-                this.state.profilePic = this.getProfilePic(this.state.jid)
+                this.state.profilePic = await this.sock.profilePictureUrl(this.state.jid, 'image')
                 this.countQRCode = 0
                 this.state.qrcode = null
                 this.state.statusConnection = 'connected'
@@ -212,21 +217,30 @@ class Baileys {
     async initSockEvents() {
         this.sock.ev.on('contacts.upsert', async (contacts) => {
             var contactsForSync = []
+            console.log('Salvando contatos');
             for (const contact of contacts) {
+                // console.log(contact.id);
+                // await sleep(300);
+                var profilepic = await this.sock.profilePictureUrl(contact.id, 'image').catch(err => console.log('Sem foto')) || null
                 contactsForSync.push({
                     id: contact.id,
                     userName: contact.name || formatIdToPhoneNumber(contact.id),
                     fromApp: 'whatsapp',
                     connection: { id: this.state.id, name: this._name, phoneNumber: this._phoneNumber },
-                    profilePictureUrl: (await this.getProfilePic(contact.id))
+                    profilePictureUrl: profilepic
                 })
             }
-            await db.updateSession({ id: this.state.id }, { contacts: contactsForSync })
 
-            await this.sendEventForWebhook({
-                event: 'contacts.upsert',
-                data: contactsForSync
-            })
+            if (contactsForSync.length > 0) {
+                await db.updateSession({ id: this.state.id }, { contacts: contactsForSync })
+                await this.sendEventForWebhook({
+                    event: 'contacts.upsert',
+                    data: contactsForSync
+                })
+                console.log('Contatos salvos');
+            }
+
+
         })
         this.sock.ev.on('messages.upsert', async ({ messages }) => {
             for (const msg of messages) {
@@ -249,26 +263,31 @@ class Baileys {
         })
     }
 
-    async end(logout) {
+    async endSession(deleteSession) {
         if (this.sock) {
             this.countQRCode = 0
             this.state.statusConnection = 'disconnected'
 
             this.sock.ev.removeAllListeners('connection.update')
-            if (logout) { this.sock.logout() }
+            this.sock.logout()
             this.sock.end()
-            this.sock.ev.removeAllListeners('connection.update')
-            await db.deleteSession(this.state.id)
-            await db.deleteAuthSession(this.state.id)
+
+
 
             await this.sendEventForWebhook({
                 event: 'connection.update',
                 data: this.state
             })
 
-            var instances = globalVars.instances.filter(instance => instance.state.id !== this.state.id)
-            globalVars.instances = instances
+            await db.updateSession({ id: this.state.id }, this.state)
+            delete globalVars.instances[this.state.id]
+            await db.deleteAuthSession(this.state.id)
 
+            if (deleteSession) {
+                await db.deleteSession(this.state.id)
+
+
+            }
         }
     }
 
@@ -286,18 +305,24 @@ class Baileys {
         if (more) {
             body.info = more;
         }
-
+        globalVars.io.emit('events', body)
         if (this.state.webhook.state) {
             try {
                 globalVars.io.emit('events', body)
+                // console.log("Webhook send:", body);
                 const response = await axios.post(this.state.webhook.url, body);
-                console.log("Webhook response:", response.data);
+                // console.log("Webhook response:", response.status);
             } catch (error) {
                 console.log("Error sending webhook:", error.message);
             }
         }
     }
 
+    async updateWebhook({ events, url, state }) {
+        if (state) this.state.webhook.state = state
+        if (events) this.state.webhook.events = { ...this.state.webhook.events, ...events }
+        if (url) this.state.webhook.url = url
+    }
 
     async getProfilePic(jid) {
         return await this.sock.profilePictureUrl(jid, 'image')
@@ -398,6 +423,9 @@ class Baileys {
 
 module.exports = Baileys;
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 const formatIdToPhoneNumber = (idClient) => {
     var number = `${idClient.replace('@s.whatsapp.net', '')}`
@@ -421,14 +449,5 @@ function getTextMessage(msg) {
         return msg.message.conversation
     }
 }
-const getFileTypeFromBuffer = async (myBuffer) => {
-    try {
-        const { fileTypeFromBuffer } = await import('file-type');
-        const type = await fileTypeFromBuffer(myBuffer);
-        return type;
-    } catch (error) {
-        console.error('Erro ao obter o tipo do arquivo:', error);
-        return null;
-    }
-};
+
 

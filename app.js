@@ -25,12 +25,13 @@ const path = require('path');
 
 
 const Baileys = require('./class/InstanceBaileys');
+const { verifyJWT } = require('./config/auth');
 
 app.use(cors());
 app.use(express.json());
 app.use(logger('dev'));
 
-app.use(express.static(path.join(__dirname, 'my-vite-app/dist')));
+app.use(express.static(path.join(__dirname, 'front/dist')));
 
 
 // Servir arquivos estáticos da pasta "public"
@@ -39,17 +40,62 @@ app.use(express.static('public'));
 
 
 globalVars.io.on("connection", (socket) => {
-    socket.on('startConnection', async (id) => {
-        var index = findInstance(id)
-        if (!index) {
-            var a = new Baileys({
-                id: id
-            })
-            globalVars.instances.push(a)
-            await db.createSession(a.dataSession)
-            await a.connectOnWhatsapp()
+    socket.on('connectInstance', async (id) => {
+        var instance = await findInstance(id)
+
+        if (instance) {
+            delete instance.contacts
+            var a = new Baileys({ infos: instance })
+            globalVars.instances[a.state.id] = a
+            await globalVars.instances[a.state.id].connectOnWhatsapp()
+
         }
     });
+    socket.on('disconnectInstance', async (id, callback) => {
+        var instances = await findInstance(id)
+        if (instances) {
+            await globalVars?.instances[id]?.endSession()
+            callback(await db.getSessions())
+            console.log('desconnectado')
+        }
+    });
+
+    socket.on('getInstances', async (callback) => {
+        if (callback) callback(await db.getSessions())
+    });
+
+    socket.on('createInstance', async (id, callback) => {
+        var instance = await findInstance(id)
+        if (!instance) {
+            await db.createSession(new Baileys({ id: id }).state)
+            callback(await db.getSessions())
+            console.log('Instância criada')
+        }
+    });
+
+    socket.on('updateInstance', async (data, callback) => {
+        var instance = await findInstance(data.id)
+        if (instance) {
+            await db.updateSession({ id: data.id }, data)
+            console.log(data);
+            if (globalVars.instances[data.id]) globalVars.instances[data.id].state = data
+            callback(await db.getSessions())
+            console.log('Instância criada')
+        }
+    });
+
+    socket.on('deleteInstance', async (id, callback) => {
+        var instance = await findInstance(id)
+        if (instance) {
+            await globalVars?.instances[instance.id]?.endSession(true)
+            await db.deleteSession(instance.id)
+            await db.deleteAuthSession(instance.id)
+            callback(await db.getSessions())
+            console.log('desconnectado e deletado')
+        }
+    });
+
+
 })
 
 
@@ -57,68 +103,131 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'my-vite-app/dist', 'index.html'));
 });
 
-app.get('/message', async (req, res) => {
-    var response = globalVars.instances.map((instance) => {
-        return instance.message
-    })
-    return res.json(response);
-});
-
 app.get('/instances', (req, res) => {
-    db.getSession().then((result) => {
-        res.status(200).json({ memory: globalVars.instances, dataBase: result })
+    db.getSessions().then((result) => {
+        const map = result?.map(i => {
+            delete i.contacts
+            return i
+        })
+        return res.status(200).json(map)
     })
 });
 
-app.get('/contacts', async (req, res) => {
-    const { id } = req.query
-    var index = findInstance(id)
-    if (index >= 0 && index !== null) {
-        var session = await db.getSession({ id: id })
-        res.status(200).json(session[0].contacts)
-    } else {
-        res.status(400).json(null)
-    }
-
-});
-
-app.get('/statusConnection', (req, res) => {
-    const { id } = req.query
-    var index = findInstance(id)
-    if (index >= 0 && index !== null) {
-        res.status(200).json(globalVars?.instances[index]?.statusConnection)
-    } else {
-        res.status(400).json(null)
+app.get('/instance', verifyJWT, async (req, res) => {
+    try {
+        var instance = await findInstance(req.instance)
+        delete instance._id
+        return res.status(200).json(instance).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 
-app.post('/startConnection', async (req, res) => {
-    const { id } = req.query
-    var index = findInstance(id)
-    if (!index) {
-        var a = new Baileys({
-            id: id
-        })
-        globalVars.instances.push(a)
-        var session = await db.createSession(a.dataSession).then(async () => {
-            await a.connectOnWhatsapp()
-            res.status(200).json(session)
-        }).catch(() => res.status(400).end())
-    } else {
-        res.status(200).end()
+app.post('/instance', async (req, res) => {
+    try {
+        const { id, name } = req.body
+        var instance = await findInstance(id)
+        if (!instance) {
+            const result = await db.createSession(new Baileys({ id: id, name: name || null }).state)
+            delete result._id
+            globalVars.io.emit('updateInstances', await db.getSessions())
+            console.log('Instância criada')
+            return res.status(200).json(result).end()
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
 });
 
-app.post('/disconnect', async (req, res) => {
-
-    const { id } = req.query
-    console.log('disconnect', id)
-    var index = findInstance(id)
-    if (index >= 0 && index !== null || index) {
-        await globalVars?.instances[index]?.end(true, "xxAPP")
-        console.log('desconnectado')
+app.put('/instance', verifyJWT, async (req, res) => {
+    try {
+        const { name } = req.body
+        const result = await db.updateSession({ id: req.instance }, { name: name })
+        delete result._id
+        globalVars.io.emit('updateInstances', await db.getSessions())
+        console.log('Instância atualizada')
+        return res.status(200).json(result).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
     }
-    res.status(200).end()
+});
+
+app.delete('/instance', verifyJWT, async (req, res) => {
+    try {
+        await db.deleteSession(req.instance)
+        globalVars.io.emit('updateInstances', await db.getSessions())
+        if (globalVars.instances[req.instance]) globalVars.instances[req.instance].endSession(true)
+        console.log('Instância deletada')
+        return res.status(200).json({ id: req.instance, status: 'deleted' }).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+});
+
+
+app.put('/webhook', verifyJWT, async (req, res) => {
+    try {
+        const { state, events, url } = req.body
+        var instance = await findInstance(req.instance)
+        const data = {
+            url: url || instance.webhook.url,
+            events: { ...instance.webhook.events, ...events },
+            state: state || false
+        }
+        const result = await db.updateSession({ id: req.instance }, { webhook: data })
+        delete result._id
+        delete result.contacts
+
+        if (globalVars.instances[req.instance]) globalVars.instances[req.instance].state.webhook = data
+
+        globalVars.io.emit('updateInstances', await db.getSessions())
+        console.log('Webhook de instância atualizado')
+        return res.status(200).json(result).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+});
+
+
+app.get('/connect', verifyJWT, async (req, res) => {
+    try {
+        var instance = await findInstance(req.instance)
+        delete instance.contacts
+        var a = new Baileys({ infos: instance })
+        globalVars.instances[a.state.id] = a
+        await globalVars.instances[a.state.id].connectOnWhatsapp()
+        return res.status(200).json(await db.getSession({ id: req.instance })).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+});
+
+app.delete('/disconnect', verifyJWT, async (req, res) => {
+    try {
+        await globalVars?.instances[req.instance]?.endSession()
+        globalVars.io.emit('updateInstances', await db.getSessions())
+        return res.status(200).json(await db.getSession({ id: req.instance })).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+});
+
+app.get('/contacts', verifyJWT, async (req, res) => {
+    try {
+        var session = await db.getSession({ id: req.instance })
+        return res.status(200).json(session?.contacts || []).end()
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json(error).end()
+    }
+
 });
 
 app.post('/sendMessageText', async (req, res) => {
@@ -134,7 +243,7 @@ app.post('/sendMessageText', async (req, res) => {
     }
 });
 
-app.post('/sendMessageImage', async (req, res) => {
+app.post('/sendMessageMedia', async (req, res) => {
     const { id } = req.query
     var data = req.body
     console.log(data);
@@ -209,32 +318,31 @@ app.post('/getProfilePic', async (req, res) => {
         res.status(204).end()
     }
 });
- 
 
-connectDatabase(process.env.DATABASE_URL)
 
-// db.getSession().then(async (result) => {
-//     if (result) {
-//         for (let index = 0; index < result.length; index++) {
-//             var a = new Baileys(result[index].name, result[index].id)
-//             globalVars.instances.push(a)
-//             await a.connectOnWhatsapp()
+connectDatabase(process.env.DATABASE_URL, () => {
+    db.getSessions().then(async (result) => {
+        if (result) {
+            result?.forEach(async instance => {
+                if (instance.statusConnection !== 'connected') {
+                    await db.updateSession({ id: instance.id }, { statusConnection: 'disconnected', qrcode: null })
+                    return
+                }
+                delete instance.contacts
+                var a = new Baileys({ infos: instance })
+                globalVars.instances[a.state.id] = a
+                await globalVars.instances[a.state.id].connectOnWhatsapp()
+            });
+        }
+    })
+})
 
-//         }
-//     }
-//     console.log('iNICIANDO iNSTÂNCIAS');
-// })
+
 
 httpServer.listen(process.env.PORT || 3000, () => {
     console.log("\x1b[33m%s\x1b[0m", "SERVIDOR RODANDO NA PORTA", process.env.PORT || 3000);
 });
 
-function findInstance(instanceId) {
-    const { instances } = globalVars
-    var index = instances.findIndex(instance => instance.state.id === instanceId)
-    if (index === -1) {
-        return null
-    } else {
-        return index
-    }
+async function findInstance(instanceId) {
+    return await db.getSession({ id: instanceId })
 }

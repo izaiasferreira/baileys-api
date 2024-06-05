@@ -1,5 +1,5 @@
 module.exports = {
-    instances: [],
+    instances: {},
     io: null,
     database: null,
     Headers: {
